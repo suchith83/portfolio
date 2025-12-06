@@ -1,0 +1,341 @@
+\documentclass[9pt,a4paper]{extarticle}
+%\documentclass[]{file}
+\usepackage[margin=0.2in]{geometry}
+\usepackage{romannum}
+\usepackage[hidelinks]{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{xcolor,colortbl}
+\usepackage{fontawesome}
+\usepackage{comment}
+\usepackage{tabularx, colortbl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}
+\usepackage{environ}
+\usepackage{tikz}
+\usetikzlibrary{calc,matrix}
+\usepackage{hyperref}
+
+\newcommand{\ts}{\textsuperscript}
+\RequirePackage{fix-cm}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}{>{\centering\arraybackslash} m{1.6cm} }  
+\newcommand{\size}[2]{{\fontsize{#1}{0}\selectfont#2}}
+\definecolor{Gray}{gray}{0.85}
+\newcommand{\cooo}{CO\textsubscript{2} }
+\newcolumntype{a}{>{\columncolor{Gray}}p{1.6cm}}
+\newcolumntype{z}{>{\columncolor{Gray}}p{2cm}}
+\setlist[itemize]{noitemsep, topsep=0pt}
+\addtolength{\parskip}{-1.5mm}
+\tcbset{
+    frame code={}
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!40,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=0mm,
+    boxsep=3pt,
+    arc=0pt,outer arc=0pt,
+    }
+    
+\newenvironment{changemargin}[2]{%
+  \begin{list}{}{%
+  \setlength{\topsep}{0.05in}%
+    \setlength{\leftmargin}{#1}%
+    \setlength{\rightmargin}{#2}%
+  }%
+  \item[]}{\end{list}
+}
+
+\newenvironment{body} {
+\vspace*{-6pt}
+	\begin{changemargin}{0.22in}{0.05in}
+  }	
+	{\end{changemargin}
+}	
+
+\newenvironment{body2} {
+\vspace*{-6pt}
+	\begin{changemargin}{0.05in}{0.05in}
+  }	
+	{\end{changemargin}
+}
+
+% -------------------- Document Begins-----------------------------------
+
+
+
+\begin{document}
+\begin{flushleft}
+{\Huge\textbf{Koduru Suchith}} \\
+\vspace{2pt} % Reduced vertical space here
+\large\textbf{Computer Science Engineering Graduate, Indian Institute of Technology Delhi'25} \\
+\vspace{4pt} % Reduced vertical space here
+\faEnvelope \hspace{1pt} \href{mailto:suchith1646@gmail.com}{suchith1646@gmail.com} \hspace{4pt}\(|\)\hspace{4pt}
+\faEnvelope \hspace{1pt} \href{mailto:cs1210572@iitd.ac.in}{cs1210572@iitd.ac.in} \hspace{4pt}\(|\)\hspace{4pt}
+\faLinkedinSquare \hspace{1pt} \href{https://www.linkedin.com/in/suchith-koduru-34966022b/}{koduru-suchith} \hspace{4pt}\(|\)\hspace{4pt}
+\faGithub \hspace{1pt} \href{https://github.com/suchith83}{suchith83} \hspace{4pt}\(|\)\hspace{4pt}
+\faPhone \hspace{1pt} +91-8465073250
+\end{flushleft}
+
+\vspace{-0.3cm}
+
+% ------- Academic Qualifications ------------
+
+\noindent\rule[0.5ex]{\linewidth}{1pt}
+\vspace{-0.85cm}
+{\large \textbf{\begin{tcolorbox}[height= 0.6cm, width=20.00cm]\textsc{Academic Qualifications}\end{tcolorbox}}}
+\begin{flushleft}
+\vspace{-0.23cm}
+\begin{center}
+\begin{tabular}{|p{2.22cm}|p{5.9cm}|p{8.0cm}|p{2.0cm}|}
+\hline
+
+\centering{\textbf{Year}} & \centering{\textbf{Qualification}} & \centering{\textbf{Institute}} & {\hspace{5mm}\textbf{CPI/$\%$}}\\
+\hline
+\centering{2021} - {2025} & \centering{B.Tech} & \centering{Indian Institute of Technology Delhi} & \hspace{4mm}6.36/10.0\\
+\hline
+\centering{2021} & \centering{Class \Romannum{12} (SSC)} & \centering{Narayana Educational Institute, Hyderabad} & \hspace{5.5mm}98$\%$\\
+\hline
+\centering{2019} & \centering{Class \Romannum{10} (SSC)} & \centering{Viswabharathi High School, Gudivada} & \hspace{4mm}10.0/10.0\\
+\hline
+\end{tabular}
+\end{center}
+\end{flushleft}
+% -----------------scholastic achievements-------------
+\vspace{-0.05cm}
+{\large \textbf{\begin{tcolorbox}[height= 0.6cm, width=20.00cm]\textsc{Scholastic Achievements}\end{tcolorbox}}}
+\vspace{-0.4cm}
+\begin{itemize}
+    \item Achieved \textbf{All India Rank 479} in \textbf{JEE Advanced 2021}—a national-level engineering exam, among more than 1.2 lakh shortlisted candidates.
+    \item Achieved \textbf{All India Rank 620} in \textbf{JEE Mains 2021}—a national-level engineering exam, among more than ten lakh candidates appearing.
+    \item Achieved \textbf{Rank 201} in \textbf{TS-EAMCET 2021}—a state-level engineering exam, among over 2.2 lakh students conducted by TS State Board.
+    % \item Achieved \textbf{Rank 201} in \textbf{AP-EAMCET 2021}—a state-level engineering exam, among over 2.5 lakh students conducted by AP State Board.
+\end{itemize}
+
+% -----------------Work Experience---------------------
+
+\vspace{-0.55cm}
+
+{\large \textbf{\begin{tcolorbox}[height= 0.6cm, width=20.00cm]\textsc{Work Experience}\end{tcolorbox}}}
+\vspace{-0.5cm}
+
+% \begin{tcolorbox}[colback=gray!15,height = 5.7mm, width= 20.00cm]
+
+% {\textbf{Bosch Global Software Technologies}\(|\)\textbf{ \,AI/ML Summer Research Intern}}\hfill\hfill(\textit{May'24 - Jul'24})\end{tcolorbox} 
+
+% \vspace{-0.4cm}
+% \begin{itemize}
+
+% \item Explored adversarial audio synthesis using various GAN models to generate various noises, time-series datasets, and realistic sounds.
+% \item Applied GAN techniques to the MNIST dataset, achieving significant accuracy and demonstrating versatility in model implementation.
+% \item Synthesized complex sounds such as drums and bird calls using architectures like \textbf{Simple GAN, GAN with LSTM, DC-GAN, }and\textbf{ WaveGAN}.
+
+% \item Enhanced model performance by leveraging \textbf{CNN}s and \textbf{RNN}s, implementing algorithms from \textbf{Adversarial Audio Synthesis} research paper.
+% \end{itemize}
+% \vspace{-0.3cm}
+
+% \begin{tcolorbox}[colback=gray!15,height = 5.7mm, width= 20.00cm]
+% {\textbf{Large Language Models}} \(|\)\textbf{ Undergraduate Project, Prof. Rohit Budhiraja}\hfill\hfill(\textit{Dec'24 - May'25})\end{tcolorbox}
+% \vspace{-0.4cm}
+% \begin{itemize}
+% \item Executed large-scale conversion of 2TB 3GPP DOCX files into Markdown, reducing processing overhead and optimizing ingestion by \textbf{LLM}s.
+
+% \item Explored and evaluated multiple conversion models (\textbf{Deepseek, Intern VL38B, LlamaVision}) before integrating \textbf{Simpletex} APIs.
+% \item Developed custom code enhancements to drastically cut down on conversion time and ensure high reliability across the entire pipeline.
+% % \item Explored processing techniques like \textbf{skeletonisation}, \textbf{hough transform} \& canny edge detection to calculate features of dimples
+% \end{itemize}
+
+\begin{tcolorbox}[colback=gray!15,height=5.7mm,width=20.00cm]
+\textbf{AI Software Engineer – 10xscale.ai} \(|\)\textbf{ Hyderabad-based Startup} \hfill (\textit{June'25 – Present})
+\end{tcolorbox}
+\vspace{-0.2cm}
+\begin{itemize}
+    \item Contributed to the open-source agent framework \textbf{\href{https://github.com/10xHub/Agentflow}{Agentflow}}, collaborating on \textbf{large-scale codebases}, enforcing \textbf{code structure}, maintaining \textbf{unit test coverage}, and managing \textbf{pull requests (PRs)}—two of which (\href{https://github.com/10xHub/Agentflow/pull/17}{\#17}, \href{https://github.com/10xHub/Agentflow/pull/19}{\#19}) were successfully \textbf{merged} into the main project.
+    
+    \item Built a \textbf{Model Context Protocol (MCP)} server for \textbf{PostgreSQL}, enabling natural language querying of structured data. Integrated these tools within \textbf{Agentflow} to create a \textbf{database-aware agent} capable of reasoning over database queries.
+    
+    \item Designed and implemented a \textbf{multi-agent architecture} using \textbf{LangChain}, \textbf{LangGraph}, and \textbf{FastMCP}, enabling collaboration among specialized agents with contextual memory and scalable execution.
+    
+    \item Developed agents with \textbf{persistent short-term and long-term memory} using \textbf{Qdrant vector database} and \textbf{Mem0}, improving context retention and long-horizon reasoning across interactions.
+    
+    \item Utilized \textbf{Git} for version control and \textbf{GitHub Copilot} to improve development productivity. Maintained modular, production-ready code across multiple AI frameworks and services.
+    
+    \item Created a \textbf{robotic prototype} powered by \textbf{Raspberry Pi}, integrating AI-generated responses into a real-time display for live conversational demonstrations.
+    
+    \item \textbf{Technologies Used:} Python, Docker, PostgreSQL, Linux, Qdrant, LangChain, LangGraph, Agentflow, FastMCP, Git, GitHub Copilot.
+\end{itemize}
+
+\vspace{-0.1cm}
+
+\begin{tcolorbox}[colback=gray!15,height = 5.7mm, width= 20.00cm]
+{\textbf{Maternal Health Risk Predictor}} \(|\)\textbf{ Summer Project, Prof. Kapil Tomar}\hfill\hfill(\textit{May'24 - Jul'24})\end{tcolorbox}
+\vspace{-0.2cm}
+\begin{itemize}
+\item Developed a full-stack \textbf{Maternal Health Risk Predictor} under Prof. Kapil Tomar, integrating ML with a responsive web interface for real-time inference.
+\item Performed thorough \textbf{data cleaning} and \textbf{outlier removal} on clinical datasets to improve model stability and input reliability.
+\item Benchmarked multiple models (\textbf{SVM, RF, XGBoost, Gradient Boosting}); achieved \textbf{99\% accuracy} with Gradient Boosting and exported using \textbf{Pickle}.
+\item Designed and deployed a Flask-based app with \textbf{Predict}, \textbf{Result}, and \textbf{Dashboard} pages using HTML, inline CSS, and JavaScript.
+\item Highlighted out-of-range inputs in predictions for interpretability and integrated model outputs into a user-friendly result display.
+\end{itemize}
+
+
+\vspace{-6mm}
+
+
+
+% -------------- Key Project ------------------
+
+{\large \textbf{\begin{tcolorbox}\textsc{Key Projects}\end{tcolorbox}}}
+
+\vspace{-0.6cm}
+
+
+% \begin{tcolorbox}[colback=gray!15,height = 5.7mm, width=20.00cm]
+% {\textbf{ Computer Networks}} \(|\)\textbf{ CS425A Course Project, Prof. Aditya Vadapalli}\hfill\hfill(\textit{Jan'25 - May'25})
+% \end{tcolorbox}
+% \vspace{-0.4cm}
+% \begin{itemize}
+% \item Developed \textbf{multi-threaded C++ chat server} with authentication, group messaging; stress-tested stable at 225 concurrent clients.
+% \item Built Python \textbf{iterative/recursive DNS} resolver with timeout / NXDOMAIN handling, sustaining 100+ parallel lookups under 20 ms.
+% \item Engineered raw-socket C++ TCP client, hand-crafted IP/TCP headers to complete three-way handshake without kernel stack.
+% \item Implemented C++ DV/LS routing simulators \textbf{(Bellman-Ford, Dijkstra)}, parsing adjacency matrices and outputting iterative \& final tables.
+% \end{itemize}
+% \vspace{-0.3cm}
+
+\begin{tcolorbox}[colback=gray!15,height = 5.7mm, width=20.00cm]
+\href{https://github.com/suchith83/Churn-Prediction}{\textbf{ Customer Churn Prediction using Random Forest (Telecom Domain)} \large\faGithub} \hfill\hfill(\textit{May'25 - May'25})
+\end{tcolorbox}
+\vspace{-0.2cm}
+\begin{itemize}
+\item Developed an end-to-end \textbf{customer churn prediction} system using the Telco dataset, combining EDA, feature engineering, and model interpretability.
+\item Addressed \textbf{class imbalance} using SMOTE and ADASYN; encoded categorical variables and engineered meaningful features from raw attributes.
+\item Tuned a \textbf{Random Forest classifier} with grid search over 7+ hyperparameters using stratified k-fold CV.
+\item Applied SHAP for model interpretability and implemented \textbf{threshold optimization} to align predictions with business objectives.
+\end{itemize}
+
+\vspace{-0.1cm}
+
+\begin{tcolorbox}[colback=gray!15,height = 5.7mm, width= 20.00cm]
+{\textbf{Multi-Class Image Classification}} \(|\) \textbf{Machine Learning, Prof. Rahul Garg} \hfill(\textit{Sep'24 - Nov'24})
+\end{tcolorbox}
+\vspace{-0.2cm}
+\begin{itemize}
+\item Developed a high-confidence image classification model on the \textbf{CIFAR-100} dataset by experimenting with various architectures and calibration methods.
+\item Implemented \textbf{WideResNet (WRN-28-10)} and optimized generalization performance using \textbf{Sharpness-Aware Minimization (SAM)}.
+\item Enhanced prediction reliability through \textbf{temperature scaling}, improving calibrated accuracy on high-confidence outputs.
+\item \textbf{Technologies Used:} PyTorch, torchvision, NumPy, Matplotlib, pandas
+\end{itemize}
+\vspace{-0.1cm}
+\begin{tcolorbox}[colback=gray!15,height = 5.7mm, width= 20.00cm]
+{\textbf{Academic Database System}} \(|\) \textbf{DBMS, Prof. Kaustubh Beedkar} \hfill(\textit{Feb'24 - Mar'24})
+\end{tcolorbox}
+\vspace{-0.2cm}
+\begin{itemize}
+\item Designed and implemented a \textbf{PostgreSQL} academic administration database inspired by IIT Delhi’s internal system.
+\item Integrated stored functions, triggers, and auto-update mechanisms to streamline academic record management.
+\item Built a relational schema and executed SQL queries for efficient data handling and consistency.
+\item \textbf{Technologies Used:} MySQL, PostgreSQL
+\end{itemize}
+
+
+
+
+
+\vspace{-5.5mm}
+
+
+%  -----------Technical Skills------------------
+
+
+{\large \textbf{\begin{tcolorbox}[height= 0.6cm, width=20.0cm]\textsc{Technical Skills}\end{tcolorbox}}}
+\vspace{-0.35cm}
+\begin{center}
+
+\begin{tabular}{|m{1.6cm}|m{7.97cm}|m{1.5cm}|m{7cm}| }
+\hline
+\textbf{Languages} 
+&C, C++, Python, SQL, javascript
+& \textbf{OS} 
+&Linux(ubuntu),Windows
+\\
+\hline
+\textbf{Libraries}
+& Langchain, LangGraph, LiteLLM
+& \textbf{Utilities} 
+&Git, \LaTeX, Docker
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{-0.55cm}
+
+% % -----------------Relevant Courses------------
+
+
+{\large \textbf{\begin{tcolorbox}[height= 0.6cm, width=20.0cm]\textsc{Relevant Courses}\hfill\small {}\end{tcolorbox}}}
+\vspace{-0.4cm}
+\begin{center}
+\begin{tabular}{|p{4.22cm}|p{7.84cm}|p{6.42cm}|}
+\hline
+Linear Algebra & Data Structures and Algorithms & Machine Learning \\
+Operating Systems & Introduction to Database Management Systems & Computer Architecture \\
+Signals and Systems & Analysis and Design of Algorithms & Computer Networks \\
+Digital Logic & Introduction to Automata and Theory of Computation & Programming Languages \\
+Logic for Computer Science & Probability and Stochastic Processes & Parallel Programming \\
+\hline
+\end{tabular}
+\end{center}
+% \vspace{-0.3cm}
+
+
+
+
+
+\vspace{-0.55cm}
+
+% -----------Positions of Responsibility--------
+
+% {\large \textbf{\begin{tcolorbox}[height= 0.6cm, width=20.0cm]\textsc{Positions of Responsibility}\end{tcolorbox}}}
+
+% \vspace{-0.6cm}
+
+% \begin{tcolorbox}[colback=gray!15,height = 5.7mm, width= 20.00cm]
+% \textbf{Secretary, Sports}
+% \(|\) \textbf{Hall IX, IIT Kanpur}\hfill(\textit{Aug'24 - Present})
+% \end{tcolorbox}
+% \vspace{-0.4cm}
+% \begin{itemize}   
+%         \item Launching and managing \textbf{Volleyball, Basketball, Indoor Sports, and E-sports leagues} to promote physical fitness and community bonding
+%         \item Leading the renovation of the badminton court to ensure year-round access and improve the quality of sports facilities for residents
+%         \item Organizing exciting sports tournaments and engaging events to enhance participation and community bonding within the hall environment.
+%         \item Developing initiatives to ensure access to sports equipment and activities for all hall residents, creating an inclusive sports environment
+% \end{itemize}
+
+% \vspace{-0.3cm}
+
+% \vspace{-0.55cm}
+
+% {\large \textbf{\begin{tcolorbox}[height= 0.6cm, width=20.0cm]\textsc{Extra Cirriculars}\end{tcolorbox}}}
+% \vspace{-0.35cm}
+% \begin{itemize}   
+%         \item Volunteered at the Student Placement Office, assisting with logistics for interviews and recruitment processes for major companies.
+%         \item Contributed to the winning cricket team in the Cricket Tournament conducted by TSS, IIT Kanpur, showcasing teamwork and sportsmanship.
+%         \item Won multiple intra-school running competitions, including 100m, 200m, and 4x100m relay races, demonstrating athletic excellence.
+%         \item Played a key role in the runner-up volleyball team during intra-school sports events, fostering collaboration and competitive spirit.
+% \end{itemize}
+
+% \vspace{-0.3cm}
+\end{document}
