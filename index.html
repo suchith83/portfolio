@@ -3,615 +3,320 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suchith Koduru | AI Engineer</title>
-  
+  <title>Suchith Koduru</title>
+
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Suchith Koduru - AI Software Engineer specializing in LLM agents, multi-agent systems, and AI integration. IIT Delhi CS Graduate.">
+  <meta name="description" content="Suchith Koduru — AI Software Engineer building LLM agents, multi-agent systems, and memory-augmented AI. IIT Delhi CS '25.">
   <meta name="keywords" content="AI Engineer, LLM, LangChain, LangGraph, Machine Learning, IIT Delhi, Python, Agents">
   <meta name="author" content="Suchith Koduru">
-  
+
   <!-- Open Graph Tags -->
-  <meta property="og:title" content="Suchith Koduru | AI Engineer">
-  <meta property="og:description" content="AI Software Engineer specializing in LLM agents, multi-agent systems, and AI integration.">
+  <meta property="og:title" content="Suchith Koduru">
+  <meta property="og:description" content="AI Software Engineer building LLM agents, multi-agent systems, and memory-augmented AI.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://suchith.space">
-  
-  <!-- Favicon - Lightning bolt icon -->
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+
+  <!-- Preload fonts -->
+  <link rel="preload" href="fonts/GeistSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/GeistSans-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
   <link rel="stylesheet" href="styles.css">
-  
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFC42ZF5NR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-BFC42ZF5NR'); // Replace with your GA4 Measurement ID
+    gtag('config', 'G-BFC42ZF5NR');
   </script>
 </head>
 <body>
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
   <!-- Navigation -->
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
-      <a href="#" class="nav-logo">
-        <span class="logo-text">&lt;SK /&gt;</span>
-      </a>
-      
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span class="hamburger"></span>
-      </button>
-      
-      <ul class="nav-menu">
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#education" class="nav-link">Education</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
-      
-      <button class="theme-toggle" aria-label="Toggle theme">
-        <i class="fas fa-moon"></i>
-        <i class="fas fa-sun"></i>
-      </button>
+      <a href="#" class="nav-logo" aria-label="Scroll to top">Suchith Koduru</a>
+
+      <div class="nav-right">
+        <ul class="nav-menu" role="list">
+          <li><a href="#story" class="nav-link">About</a></li>
+          <li><a href="#work" class="nav-link">Work</a></li>
+          <li><a href="resume.pdf" class="nav-link" target="_blank" rel="noopener">Resume</a></li>
+        </ul>
+
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="hamburger"></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header id="hero" class="hero">
-    <div class="hero-content">
-      <p class="hero-greeting animate-fade-in">Hi, my name is</p>
-      <h1 class="hero-name animate-fade-in-delay-1">Suchith Koduru</h1>
-      <h2 class="hero-title animate-fade-in-delay-2">I build intelligent AI systems.</h2>
-      <p class="hero-description animate-fade-in-delay-3">
-        AI Software Engineer specializing in <span class="highlight">LLM agents</span>, 
-        <span class="highlight">multi-agent architectures</span>, and 
-        <span class="highlight">memory-augmented AI systems</span>. 
-        Currently building AI agents at <a href="https://10xscale.ai" target="_blank" rel="noopener">10xscale.ai</a>.
-      </p>
-      <div class="hero-cta animate-fade-in-delay-4">
-        <a href="resume.pdf" class="btn btn-primary" download>
-          <i class="fas fa-download"></i> Download Resume
-        </a>
-        <a href="#contact" class="btn btn-secondary">
-          <i class="fas fa-envelope"></i> Get In Touch
-        </a>
+  <!-- Zone 1: Hero -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1 class="hero-name anim-hero anim-hero--1">Suchith Koduru</h1>
+        <p class="hero-subtitle anim-hero anim-hero--2">
+          <span class="hero-subtitle-text">AI Engineer building intelligent systems.</span>
+          <span class="hero-cursor" aria-hidden="true"></span>
+        </p>
+        <p class="hero-description anim-hero anim-hero--3">
+          I work on LLM agents, multi-agent architectures, and memory-augmented AI
+          at <a href="https://10xscale.ai" target="_blank" rel="noopener">10xscale.ai</a>.
+          Previously research at IIT Delhi. I care about building AI that's reliable,
+          contextual, and useful in production.
+        </p>
+        <div class="hero-links anim-hero anim-hero--4">
+          <a href="https://github.com/suchith83" target="_blank" rel="noopener" class="hero-social" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/suchith-koduru-34966022b/" target="_blank" rel="noopener" class="hero-social" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="mailto:suchith1646@gmail.com" class="hero-social" aria-label="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="hero-scroll-indicator">
-      <a href="#about" aria-label="Scroll to about section">
-        <i class="fas fa-chevron-down"></i>
-      </a>
+      <div class="hero-image anim-hero anim-hero--3">
+        <img src="assets/images/profile.jpg" alt="Suchith Koduru" width="180" height="180" loading="eager">
+      </div>
     </div>
   </header>
 
-  <!-- About Section -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2 class="section-title"><span class="section-number">01.</span> About Me</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>
-            Hello! I'm Suchith, an AI Software Engineer passionate about building intelligent systems 
-            that push the boundaries of what's possible with <strong>Large Language Models</strong> and 
-            <strong>autonomous agents</strong>.
-          </p>
-          <p>
-            I recently graduated from the <strong>Indian Institute of Technology Delhi</strong> with a 
-            degree in Computer Science Engineering. My journey into AI started with curiosity about 
-            how machines can reason, remember, and collaborate—leading me to specialize in:
-          </p>
-          <ul class="about-list">
-            <li><i class="fas fa-robot"></i> Building multi-agent systems with LangChain & LangGraph</li>
-            <li><i class="fas fa-brain"></i> Implementing persistent memory in AI agents (Qdrant, Mem0)</li>
-            <li><i class="fas fa-plug"></i> Creating MCP servers for database-aware AI agents</li>
-            <li><i class="fas fa-code"></i> Contributing to open-source AI frameworks</li>
-          </ul>
-          <p>
-            I'm currently focused on <strong>LLM fine-tuning</strong>, exploring ways to make AI agents 
-            more capable, contextually aware, and reliable for real-world applications.
-          </p>
-        </div>
-        <div class="about-image">
-          <div class="image-wrapper">
-            <div class="image-placeholder">
-              <i class="fas fa-user-astronaut"></i>
-              <span>Profile Photo</span>
-            </div>
-          </div>
-        </div>
+  <!-- Zone 2: Story (About + Experience merged) -->
+  <section id="story" class="section">
+    <div class="container container--prose">
+      <h2 class="section-heading reveal-heading">
+        <span class="section-heading-text">About</span>
+        <span class="section-heading-line" aria-hidden="true"></span>
+      </h2>
+      <div class="prose reveal-prose">
+        <p>
+          I'm an AI Software Engineer at <a href="https://10xscale.ai" target="_blank" rel="noopener"><strong>10xscale.ai</strong></a>,
+          where I build multi-agent systems using <strong>LangChain</strong>, <strong>LangGraph</strong>, and <strong>FastMCP</strong>.
+          I've contributed to the open-source agent framework
+          <a href="https://github.com/10xHub/Agentflow" target="_blank" rel="noopener"><strong>Agentflow</strong></a>
+          — PRs <a href="https://github.com/10xHub/Agentflow/pull/17" target="_blank" rel="noopener">#17</a> and
+          <a href="https://github.com/10xHub/Agentflow/pull/19" target="_blank" rel="noopener">#19</a> are merged —
+          and built an <strong>MCP server for PostgreSQL</strong> that lets agents query structured data with natural language.
+        </p>
+        <p>
+          I design persistent memory systems using <strong>Qdrant</strong> and <strong>Mem0</strong> for
+          long-horizon reasoning, and I prototyped a <strong>Raspberry Pi-powered robot</strong> with
+          real-time AI-generated responses for live demos. Before this, I was a research intern at
+          <strong>IIT Delhi</strong> under Prof. Kapil Tomar, where I built a full-stack
+          <strong>Maternal Health Risk Predictor</strong> — benchmarking SVM, Random Forest, XGBoost, and
+          Gradient Boosting to reach <strong>99% accuracy</strong>.
+        </p>
+        <p>
+          I graduated from <strong>IIT Delhi</strong> in 2025 with a B.Tech in Computer Science.
+          I'm interested in making AI agents more capable, contextually aware, and reliable
+          for production use.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Experience Section -->
-  <section id="experience" class="section section-alt">
+  <!-- Zone 3: Work (Projects) -->
+  <section id="work" class="section">
     <div class="container">
-      <h2 class="section-title"><span class="section-number">02.</span> Experience</h2>
-      <div class="experience-container">
-        <div class="experience-card">
-          <div class="experience-header">
-            <div class="experience-info">
-              <h3 class="experience-role">AI Software Engineer</h3>
-              <h4 class="experience-company">
-                <a href="https://10xscale.ai" target="_blank" rel="noopener">@ 10xscale.ai</a>
-              </h4>
-            </div>
-            <span class="experience-date">June 2025 — Present</span>
-          </div>
-          <ul class="experience-list">
-            <li>
-              <i class="fas fa-chevron-right"></i>
-              Contributed to the open-source agent framework <a href="https://github.com/10xHub/Agentflow" target="_blank" rel="noopener"><strong>Agentflow</strong></a>, 
-              with PRs <a href="https://github.com/10xHub/Agentflow/pull/17" target="_blank">#17</a> and 
-              <a href="https://github.com/10xHub/Agentflow/pull/19" target="_blank">#19</a> successfully merged
-            </li>
-            <li>
-              <i class="fas fa-chevron-right"></i>
-              Built a <strong>Model Context Protocol (MCP) server</strong> for PostgreSQL, enabling natural 
-              language querying of structured data with database-aware agents
-            </li>
-            <li>
-              <i class="fas fa-chevron-right"></i>
-              Designed <strong>multi-agent architectures</strong> using LangChain, LangGraph, and FastMCP 
-              with contextual memory and scalable execution
-            </li>
-            <li>
-              <i class="fas fa-chevron-right"></i>
-              Implemented <strong>persistent memory systems</strong> using Qdrant vector database and Mem0 
-              for improved long-horizon reasoning
-            </li>
-            <li>
-              <i class="fas fa-chevron-right"></i>
-              Created a <strong>robotic prototype</strong> powered by Raspberry Pi with real-time AI-generated 
-              responses for live demonstrations
-            </li>
-          </ul>
-          <div class="experience-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">LangGraph</span>
-            <span class="tech-tag">FastMCP</span>
-            <span class="tech-tag">Qdrant</span>
-            <span class="tech-tag">Docker</span>
-            <span class="tech-tag">PostgreSQL</span>
-          </div>
-        </div>
+      <h2 class="section-heading reveal-heading">
+        <span class="section-heading-text">Work</span>
+        <span class="section-heading-line" aria-hidden="true"></span>
+      </h2>
 
-        <div class="experience-card">
-          <div class="experience-header">
-            <div class="experience-info">
-              <h3 class="experience-role">Research Intern</h3>
-              <h4 class="experience-company">@ IIT Delhi (Prof. Kapil Tomar)</h4>
-            </div>
-            <span class="experience-date">May 2024 — July 2024</span>
-          </div>
-          <ul class="experience-list">
-            <li>
-              <i class="fas fa-chevron-right"></i>
-              Developed a full-stack <strong>Maternal Health Risk Predictor</strong> integrating ML with 
-              a responsive web interface for real-time inference
-            </li>
-            <li>
-              <i class="fas fa-chevron-right"></i>
-              Benchmarked multiple models (SVM, RF, XGBoost, Gradient Boosting), achieving 
-              <strong>99% accuracy</strong> with Gradient Boosting
-            </li>
-            <li>
-              <i class="fas fa-chevron-right"></i>
-              Designed and deployed a Flask-based application with prediction visualization and 
-              interpretable output highlighting
-            </li>
-          </ul>
-          <div class="experience-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Flask</span>
-            <span class="tech-tag">Scikit-learn</span>
-            <span class="tech-tag">XGBoost</span>
-            <span class="tech-tag">HTML/CSS/JS</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="section">
-    <div class="container">
-      <h2 class="section-title"><span class="section-number">03.</span> Projects</h2>
-      
       <!-- Featured Projects -->
       <div class="featured-projects">
-        <article class="project-featured">
-          <div class="project-content">
-            <p class="project-overline">Featured Project</p>
-            <h3 class="project-title">Agentflow Contributions</h3>
-            <div class="project-description">
-              <p>
-                Contributed to the open-source AI agent framework with focus on code structure, 
-                unit test coverage, and PR management. Helped build a robust foundation for 
-                scalable agent development.
-              </p>
+        <article class="project-featured reveal-block">
+          <div class="project-featured-inner">
+            <div class="project-featured-meta">
+              <span class="project-label">Featured</span>
+              <time class="project-date" datetime="2025">2025</time>
             </div>
-            <ul class="project-tech-list">
+            <h3 class="project-featured-title">
+              <a href="https://github.com/10xHub/Agentflow" target="_blank" rel="noopener">
+                Agentflow Contributions
+                <svg class="project-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
+            </h3>
+            <p class="project-featured-desc">
+              Contributed to the open-source AI agent framework with focus on code structure,
+              unit test coverage, and PR management. Built a robust foundation for scalable agent development.
+            </p>
+            <ul class="project-tech" role="list">
               <li>Python</li>
               <li>LangChain</li>
               <li>Git</li>
               <li>Unit Testing</li>
             </ul>
-            <div class="project-links">
-              <a href="https://github.com/10xHub/Agentflow" target="_blank" rel="noopener" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="https://github.com/10xHub/Agentflow/pull/17" target="_blank" rel="noopener" aria-label="PR #17">
-                <i class="fas fa-code-pull-request"></i> #17
-              </a>
-              <a href="https://github.com/10xHub/Agentflow/pull/19" target="_blank" rel="noopener" aria-label="PR #19">
-                <i class="fas fa-code-pull-request"></i> #19
-              </a>
-            </div>
-          </div>
-          <div class="project-image">
-            <div class="project-image-placeholder">
-              <i class="fas fa-robot"></i>
-              <span>Agentflow</span>
-            </div>
           </div>
         </article>
 
-        <article class="project-featured project-featured-reverse">
-          <div class="project-content">
-            <p class="project-overline">Featured Project</p>
-            <h3 class="project-title">Deep Research Agent</h3>
-            <div class="project-description">
-              <p>
-                Built a deep research agent with web searching capabilities for Hugging Face's 
-                MCP Hackathon. The agent can autonomously research topics, synthesize information, 
-                and provide comprehensive answers.
-              </p>
+        <article class="project-featured reveal-block">
+          <div class="project-featured-inner">
+            <div class="project-featured-meta">
+              <span class="project-label">Featured</span>
+              <time class="project-date" datetime="2025">2025</time>
             </div>
-            <ul class="project-tech-list">
+            <h3 class="project-featured-title">
+              <a href="https://huggingface.co/spaces/Agents-MCP-Hackathon/deepsearch" target="_blank" rel="noopener">
+                Deep Research Agent
+                <svg class="project-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
+            </h3>
+            <p class="project-featured-desc">
+              Built a deep research agent with web searching capabilities for Hugging Face's MCP Hackathon.
+              Autonomously researches topics, synthesizes information, and provides comprehensive answers.
+            </p>
+            <ul class="project-tech" role="list">
               <li>Python</li>
               <li>MCP</li>
               <li>LangChain</li>
               <li>HuggingFace</li>
             </ul>
-            <div class="project-links">
-              <a href="https://huggingface.co/spaces/Agents-MCP-Hackathon/deepsearch" target="_blank" rel="noopener" aria-label="Live Demo">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
           </div>
-          <div class="project-image">
-            <div class="project-image-placeholder">
-              <i class="fas fa-search"></i>
-              <span>Deep Research</span>
+        </article>
+
+        <article class="project-featured reveal-block">
+          <div class="project-featured-inner">
+            <div class="project-featured-meta">
+              <span class="project-label">Featured</span>
+              <time class="project-date" datetime="2025">2025</time>
             </div>
+            <h3 class="project-featured-title">
+              <span>AI-Powered Robotic Prototype</span>
+            </h3>
+            <p class="project-featured-desc">
+              Designed and built a Raspberry Pi-powered robot with real-time AI-generated responses
+              for live demonstrations. Integrates LLM inference with physical hardware for interactive
+              human-robot conversations.
+            </p>
+            <ul class="project-tech" role="list">
+              <li>Python</li>
+              <li>Raspberry Pi</li>
+              <li>LLM APIs</li>
+              <li>Hardware</li>
+            </ul>
           </div>
         </article>
       </div>
 
-      <!-- Other Projects Grid -->
-      <h3 class="projects-subtitle">Other Noteworthy Projects</h3>
+      <!-- Other Projects -->
+      <h3 class="other-projects-heading reveal-block">Other Projects</h3>
       <div class="projects-grid">
-        <article class="project-card">
-          <div class="project-card-header">
-            <div class="project-card-icon">
-              <i class="fas fa-database"></i>
-            </div>
-            <div class="project-card-links">
-              <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-          </div>
-          <h4 class="project-card-title">MCP PostgreSQL Server</h4>
-          <p class="project-card-description">
-            Model Context Protocol server enabling natural language querying of PostgreSQL databases. 
-            Integrated with Agentflow for database-aware agent capabilities.
-          </p>
-          <ul class="project-card-tech">
+        <article class="project-card reveal-card">
+          <h4 class="project-card-title">
+            <a href="#" aria-label="MCP PostgreSQL Server">
+              MCP PostgreSQL Server
+              <svg class="project-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+          </h4>
+          <p class="project-card-desc">Model Context Protocol server enabling natural language querying of PostgreSQL databases with agent integration.</p>
+          <ul class="project-tech" role="list">
             <li>Python</li>
             <li>FastMCP</li>
             <li>PostgreSQL</li>
-            <li>SQL</li>
           </ul>
         </article>
 
-        <article class="project-card">
-          <div class="project-card-header">
-            <div class="project-card-icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="project-card-links">
-              <a href="https://github.com/suchith83/Churn-Prediction" target="_blank" rel="noopener" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-          <h4 class="project-card-title">Customer Churn Prediction</h4>
-          <p class="project-card-description">
-            End-to-end ML pipeline for telecom churn prediction using Random Forest with SMOTE, 
-            SHAP interpretability, and threshold optimization for business objectives.
-          </p>
-          <ul class="project-card-tech">
+        <article class="project-card reveal-card">
+          <h4 class="project-card-title">
+            <a href="https://github.com/suchith83/Churn-Prediction" target="_blank" rel="noopener" aria-label="Customer Churn Prediction">
+              Customer Churn Prediction
+              <svg class="project-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+          </h4>
+          <p class="project-card-desc">End-to-end ML pipeline for telecom churn prediction using Random Forest with SMOTE, SHAP interpretability, and threshold optimization.</p>
+          <ul class="project-tech" role="list">
             <li>Python</li>
             <li>Scikit-learn</li>
             <li>SHAP</li>
-            <li>Pandas</li>
           </ul>
         </article>
 
-        <article class="project-card">
-          <div class="project-card-header">
-            <div class="project-card-icon">
-              <i class="fas fa-image"></i>
-            </div>
-            <div class="project-card-links">
-              <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-          </div>
-          <h4 class="project-card-title">CIFAR-100 Classification</h4>
-          <p class="project-card-description">
-            High-confidence image classification using WideResNet (WRN-28-10) with Sharpness-Aware 
-            Minimization (SAM) and temperature scaling for calibrated predictions.
-          </p>
-          <ul class="project-card-tech">
+        <article class="project-card reveal-card">
+          <h4 class="project-card-title">
+            <a href="#" aria-label="CIFAR-100 Classification">
+              CIFAR-100 Classification
+              <svg class="project-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+          </h4>
+          <p class="project-card-desc">High-confidence image classification using WideResNet with Sharpness-Aware Minimization and temperature scaling.</p>
+          <ul class="project-tech" role="list">
             <li>PyTorch</li>
             <li>WideResNet</li>
             <li>SAM</li>
-            <li>NumPy</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card-header">
-            <div class="project-card-icon">
-              <i class="fas fa-drum"></i>
-            </div>
-            <div class="project-card-links">
-              <a href="https://github.com/suchith83/drums" target="_blank" rel="noopener" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="https://suchith83.github.io/drums/" target="_blank" rel="noopener" aria-label="Live Demo">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-          </div>
-          <h4 class="project-card-title">Drum Kit</h4>
-          <p class="project-card-description">
-            Interactive web-based drum kit that responds to keyboard inputs and on-screen button clicks. 
-            Fun project showcasing DOM manipulation and audio APIs.
-          </p>
-          <ul class="project-card-tech">
-            <li>JavaScript</li>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Web Audio</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card-header">
-            <div class="project-card-icon">
-              <i class="fas fa-gamepad"></i>
-            </div>
-            <div class="project-card-links">
-              <a href="https://github.com/suchith83/Simon-Game" target="_blank" rel="noopener" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="https://suchith83.github.io/Simon-Game/" target="_blank" rel="noopener" aria-label="Live Demo">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-          </div>
-          <h4 class="project-card-title">Simon Game</h4>
-          <p class="project-card-description">
-            Classic memory game with progressively challenging sequences. Tests pattern recognition 
-            and memory skills with colorful visual feedback.
-          </p>
-          <ul class="project-card-tech">
-            <li>JavaScript</li>
-            <li>jQuery</li>
-            <li>HTML</li>
-            <li>CSS</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card-header">
-            <div class="project-card-icon">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
-            <div class="project-card-links">
-              <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-          </div>
-          <h4 class="project-card-title">Academic Database System</h4>
-          <p class="project-card-description">
-            PostgreSQL-based academic administration database inspired by IIT Delhi's internal system. 
-            Features stored functions, triggers, and auto-update mechanisms.
-          </p>
-          <ul class="project-card-tech">
-            <li>PostgreSQL</li>
-            <li>SQL</li>
-            <li>Database Design</li>
           </ul>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title"><span class="section-number">04.</span> Skills & Technologies</h2>
-      <div class="skills-container">
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fas fa-code"></i> Languages
-          </h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">C++</span>
-            <span class="skill-tag">C</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">SQL</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fas fa-robot"></i> AI/ML Frameworks
-          </h3>
-          <div class="skill-tags">
-            <span class="skill-tag">LangChain</span>
-            <span class="skill-tag">LangGraph</span>
-            <span class="skill-tag">LiteLLM</span>
-            <span class="skill-tag">FastMCP</span>
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">Scikit-learn</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fas fa-database"></i> Databases & Vector Stores
-          </h3>
-          <div class="skill-tags">
-            <span class="skill-tag">PostgreSQL</span>
-            <span class="skill-tag">MySQL</span>
-            <span class="skill-tag">Qdrant</span>
-            <span class="skill-tag">Mem0</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fas fa-tools"></i> Tools & Infrastructure
-          </h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Git</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Linux</span>
-            <span class="skill-tag">GitHub Copilot</span>
-            <span class="skill-tag">LaTeX</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fas fa-globe"></i> Web Development
-          </h3>
-          <div class="skill-tags">
-            <span class="skill-tag">HTML</span>
-            <span class="skill-tag">CSS</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">Flask</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section id="education" class="section">
-    <div class="container">
-      <h2 class="section-title"><span class="section-number">05.</span> Education & Achievements</h2>
-      <div class="education-container">
-        <div class="education-card">
-          <div class="education-icon">
-            <i class="fas fa-university"></i>
-          </div>
-          <div class="education-content">
-            <h3 class="education-degree">B.Tech in Computer Science Engineering</h3>
-            <h4 class="education-school">Indian Institute of Technology Delhi</h4>
-            <p class="education-date">2021 — 2025</p>
-            <p class="education-details">CPI: 6.36/10.0</p>
-          </div>
-        </div>
-
-        <div class="achievements-container">
-          <h3 class="achievements-title">Scholastic Achievements</h3>
-          <div class="achievements-grid">
-            <div class="achievement-card">
-              <div class="achievement-rank">AIR 479</div>
-              <div class="achievement-exam">JEE Advanced 2021</div>
-              <p class="achievement-details">Among 1.2 lakh shortlisted candidates</p>
-            </div>
-            <div class="achievement-card">
-              <div class="achievement-rank">AIR 620</div>
-              <div class="achievement-exam">JEE Mains 2021</div>
-              <p class="achievement-details">Among 10 lakh+ candidates</p>
-            </div>
-            <div class="achievement-card">
-              <div class="achievement-rank">Rank 201</div>
-              <div class="achievement-exam">TS-EAMCET 2021</div>
-              <p class="achievement-details">Among 2.2 lakh students</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title"><span class="section-number">06.</span> Get In Touch</h2>
-      <div class="contact-content">
-        <p class="contact-text">
-          I'm currently open to new opportunities and collaborations. Whether you have a question, 
-          want to discuss AI projects, or just want to say hi, feel free to reach out!
+  <!-- Zone 4: Colophon (Skills + Education + Achievements) -->
+  <section id="colophon" class="section">
+    <div class="container container--prose">
+      <h2 class="section-heading reveal-heading">
+        <span class="section-heading-text">Background</span>
+        <span class="section-heading-line" aria-hidden="true"></span>
+      </h2>
+      <div class="colophon reveal-block">
+        <p>
+          I work primarily with <strong class="skill-highlight">Python</strong>,
+          <strong class="skill-highlight">LangChain</strong>,
+          <strong class="skill-highlight">LangGraph</strong>,
+          <strong class="skill-highlight">PyTorch</strong>, and
+          <strong class="skill-highlight">PostgreSQL</strong>.
+          I deploy with <strong class="skill-highlight">Docker</strong> on Linux,
+          and have experience with <strong class="skill-highlight">C++</strong>,
+          <strong class="skill-highlight">Flask</strong>,
+          <strong class="skill-highlight">JavaScript</strong>,
+          <strong class="skill-highlight">Qdrant</strong>,
+          <strong class="skill-highlight">FastMCP</strong>, and
+          <strong class="skill-highlight">Scikit-learn</strong>.
         </p>
-        <div class="contact-links">
-          <a href="mailto:suchith1646@gmail.com" class="contact-link">
-            <i class="fas fa-envelope"></i>
-            <span>suchith1646@gmail.com</span>
-          </a>
-          <a href="https://github.com/suchith83" target="_blank" rel="noopener" class="contact-link">
-            <i class="fab fa-github"></i>
-            <span>github.com/suchith83</span>
-          </a>
-          <a href="https://www.linkedin.com/in/suchith-koduru-34966022b/" target="_blank" rel="noopener" class="contact-link">
-            <i class="fab fa-linkedin"></i>
-            <span>LinkedIn</span>
-          </a>
-        </div>
-        <a href="mailto:suchith1646@gmail.com" class="btn btn-primary btn-large">
-          <i class="fas fa-paper-plane"></i> Say Hello
-        </a>
+        <p>
+          B.Tech in Computer Science, <strong>Indian Institute of Technology Delhi</strong> (2021–2025).
+        </p>
+        <p class="colophon-achievements">
+          JEE Advanced 2021: <strong>AIR 479</strong> (of 1.2 lakh).
+          JEE Mains 2021: <strong>AIR 620</strong> (of 10 lakh+).
+          TS-EAMCET 2021: <strong>Rank 201</strong> (of 2.2 lakh).
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Zone 5: Footer = Contact -->
   <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-social">
-        <a href="https://github.com/suchith83" target="_blank" rel="noopener" aria-label="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/suchith-koduru-34966022b/" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="mailto:suchith1646@gmail.com" aria-label="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
+    <div class="container container--prose">
+      <div class="footer-content">
+        <p class="footer-cta">Open to new opportunities. <a href="mailto:suchith1646@gmail.com">Say hello.</a></p>
+        <div class="footer-links">
+          <a href="mailto:suchith1646@gmail.com" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+          <a href="https://github.com/suchith83" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/suchith-koduru-34966022b/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <p class="footer-built">Built by Suchith Koduru</p>
       </div>
-      <p class="footer-text">
-        Designed & Built by <strong>Suchith Koduru</strong>
-      </p>
-      <p class="footer-copyright">
-        &copy; 2025 Suchith Koduru. All rights reserved.
-      </p>
     </div>
   </footer>
 
