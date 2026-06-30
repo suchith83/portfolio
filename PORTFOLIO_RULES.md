@@ -39,7 +39,6 @@ Three sections with `<h3 class="section-group-label">` headings:
 ### Personal Projects
 Projects you built yourself.
 - Deep Research Agent → HuggingFace Space link
-- DSA Teaching Platform → algo.suchith.space
 - Customer Churn Prediction → GitHub
 
 ### At 10xscale.ai
@@ -55,7 +54,7 @@ Contributions to others' projects. Use normal card with title link.
 
 ## Homepage (index.html)
 
-Shows only **Personal Projects** (3 cards) in `projects-grid--three`.
+Shows 3 featured project cards in `projects-grid--three`: Deep Research Agent, Agentflow, Customer Churn Prediction.
 "View all projects →" CTA links to `projects.html`.
 
 ---

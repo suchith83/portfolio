@@ -41,16 +41,7 @@ Flat editorial illustration. Off-white background (#F8F5F0). Two simple geometri
 
 ---
 
-## 4. `algo-suchith.png`
-
-**Card:** DSA Teaching Platform
-
-**Prompt:**
-Flat editorial illustration. Off-white background (#F8F5F0). A horizontal row of five equal-width rectangles side by side, like memory cells in an array visualization. Each rectangle is outlined in dark near-black (#1A1917). The middle rectangle is filled in terracotta (#B5483A); the others are empty (just outlines). Below the row, a small downward-pointing arrow in dark near-black points to the middle cell. Editorial, schematic, generous whitespace. 1200×720 px.
-
----
-
-## 5. `churn.png`
+## 4. `churn.png`
 
 **Card:** Customer Churn Prediction
 
@@ -59,7 +50,7 @@ Flat editorial illustration. Off-white background (#F8F5F0). A simple horizontal
 
 ---
 
-## 6. `cifar.png`
+## 5. `cifar.png`
 
 **Card:** CIFAR-100 Classification
 
@@ -68,7 +59,7 @@ Flat editorial illustration. Off-white background (#F8F5F0). A very simple neura
 
 ---
 
-## 7. `robot.png`
+## 6. `robot.png`
 
 **Card:** AI-Powered Raspberry Pi Robot
 
