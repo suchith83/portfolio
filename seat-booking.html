@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Do You Stop Two People From Booking the Same Seat? — Suchith Koduru</title>
+  <meta name="description" content="An interactive walkthrough of concurrency, row-level locking, seat holds, payment, and idempotent booking APIs.">
+  <meta name="author" content="Suchith Koduru">
+  <meta property="og:title" content="How Do You Stop Two People From Booking the Same Seat?">
+  <meta property="og:description" content="Interactive systems notebook: race conditions, SELECT FOR UPDATE, seat holds, and idempotency.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://suchith.space/seat-booking.html">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+  <link rel="preload" href="fonts/GeistSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/GeistSans-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFC42ZF5NR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BFC42ZF5NR');
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Suchith Koduru</a>
+      <div class="nav-right">
+        <ul class="nav-menu" role="list" id="primary-nav">
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+          <li><a href="writing.html" class="nav-link active">Writing</a></li>
+          <li><a href="resume.pdf" class="nav-link" target="_blank" rel="noopener">Resume</a></li>
+        </ul>
+        <button class="theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+          <svg class="theme-icon theme-icon--moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="theme-icon theme-icon--sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+          <span class="hamburger" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main" class="system-article">
+    <header class="article-hero">
+      <p class="article-kicker">Systems notebook · concurrency</p>
+      <h1 class="article-title">How Do You Stop Two People From Booking the Same Seat?</h1>
+      <p class="article-lede">
+        An interactive walkthrough of concurrency, row-level locking, seat holds, payment,
+        and idempotent booking APIs — the BookMyShow-shaped problem without the marketing deck.
+      </p>
+      <div class="article-meta-bar">
+        <span>Suchith Koduru</span>
+        <span>Read by doing</span>
+        <span data-view-count="page" data-view-path="/seat-booking.html" data-pending="true">article views —</span>
+      </div>
+    </header>
+
+    <!-- 1. INTRO -->
+    <section class="article-section" id="intro">
+      <h2>1. You select A10. Someone else selects A10.</h2>
+      <p class="article-punch">Both press Book. Who gets the seat?</p>
+      <p>
+        Theatre booking looks like a UI problem. It is mostly a concurrency problem:
+        many clients, one scarce row, money in the middle.
+      </p>
+
+      <div class="article-interactive" data-viz="seat-grid">
+        <div class="viz-header">
+          <h3 class="viz-title">Seat map</h3>
+          <p class="viz-hint">Click a seat. States you’ll see later: FREE · HELD · BOOKED · LOCKED</p>
+        </div>
+        <div class="seat-legend" aria-label="Seat state legend">
+          <span><i class="swatch swatch--free"></i> FREE</span>
+          <span><i class="swatch swatch--held"></i> HELD</span>
+          <span><i class="swatch swatch--booked"></i> BOOKED</span>
+          <span><i class="swatch swatch--locked"></i> LOCKED</span>
+        </div>
+        <div class="seat-grid" role="group" aria-label="Interactive seat map">
+          <div class="seat-row">
+            <button type="button" class="seat" data-seat="A1" data-state="FREE" aria-pressed="false">A1</button>
+            <button type="button" class="seat" data-seat="A2" data-state="FREE" aria-pressed="false">A2</button>
+            <button type="button" class="seat" data-seat="A3" data-state="FREE" aria-pressed="false">A3</button>
+            <button type="button" class="seat" data-seat="A4" data-state="FREE" aria-pressed="false">A4</button>
+            <button type="button" class="seat" data-seat="A5" data-state="FREE" aria-pressed="false">A5</button>
+          </div>
+          <div class="seat-row">
+            <button type="button" class="seat" data-seat="B1" data-state="FREE" aria-pressed="false">B1</button>
+            <button type="button" class="seat" data-seat="B2" data-state="FREE" aria-pressed="false">B2</button>
+            <button type="button" class="seat" data-seat="B3" data-state="FREE" aria-pressed="false">B3</button>
+            <button type="button" class="seat" data-seat="B4" data-state="FREE" aria-pressed="false">B4</button>
+            <button type="button" class="seat" data-seat="B5" data-state="FREE" aria-pressed="false">B5</button>
+          </div>
+          <div class="seat-row">
+            <button type="button" class="seat" data-seat="C1" data-state="FREE" aria-pressed="false">C1</button>
+            <button type="button" class="seat" data-seat="C2" data-state="FREE" aria-pressed="false">C2</button>
+            <button type="button" class="seat" data-seat="C3" data-state="FREE" aria-pressed="false">C3</button>
+            <button type="button" class="seat" data-seat="C4" data-state="FREE" aria-pressed="false">C4</button>
+            <button type="button" class="seat" data-seat="C5" data-state="FREE" aria-pressed="false">C5</button>
+          </div>
+        </div>
+        <p class="viz-selected">Selected: <strong data-selected-seat>—</strong></p>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- 2. NAIVE -->
+    <section class="article-section" id="naive">
+      <h2>2. The naive implementation</h2>
+      <p>
+        Read free. Write booked. No transaction wrapping both.
+        Under concurrency, that is how you invent extra inventory.
+      </p>
+
+      <div class="article-interactive" data-viz="concurrent">
+        <div class="viz-header">
+          <h3 class="viz-title">Race: User A vs User B</h3>
+          <div class="viz-controls">
+            <button type="button" class="viz-btn" data-run>Run</button>
+            <button type="button" class="viz-btn viz-btn--ghost" data-reset>Reset</button>
+          </div>
+        </div>
+        <div class="race-stage">
+          <div class="seat seat--lg" data-race-seat data-state="FREE">A10 · FREE</div>
+          <div class="viz-log" data-log></div>
+        </div>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+        <p class="viz-note">
+          Without mutual exclusion around check+update, both transactions can observe FREE
+          and both can commit BOOKED.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. WHY -->
+    <section class="article-section" id="why">
+      <h2>3. Why the race happens</h2>
+      <p>
+        Checking availability and changing availability are two operations.
+        Unless one protected transaction owns both, another request can slip into the gap.
+      </p>
+
+      <div class="article-interactive" data-viz="timeline">
+        <div class="viz-header">
+          <h3 class="viz-title">The CHECK → UPDATE gap</h3>
+          <button type="button" class="viz-btn" data-highlight-gap>Highlight the gap</button>
+        </div>
+        <div class="db-row" data-row-state>seat_id: A10 · status: FREE</div>
+        <div class="gap-timeline" aria-hidden="true">
+          <div class="gap-step">CHECK</div>
+          <div class="gap-hole" data-gap>gap</div>
+          <div class="gap-step">UPDATE</div>
+        </div>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- 4. PESSIMISTIC -->
+    <section class="article-section" id="pessimistic">
+      <h2>4. Pessimistic locking</h2>
+      <p>
+        Lock the row before you decide. In PostgreSQL and MySQL/InnoDB, a common tool is
+        <code>SELECT … FOR UPDATE</code>: it acquires <strong>row-level locks</strong> on the
+        selected rows <em>inside the current transaction</em> — not a whole-database lock.
+      </p>
+
+      <pre class="code-block" tabindex="0"><code>BEGIN;
+SELECT status
+FROM seats
+WHERE show_id = $1 AND seat_number = 'A10'
+FOR UPDATE;
+
+-- only one transaction holds A10 here
+UPDATE seats
+SET status = 'BOOKED'
+WHERE show_id = $1 AND seat_number = 'A10';
+COMMIT;</code></pre>
+
+      <div class="article-interactive" data-viz="row-lock" data-mode="pessimistic">
+        <div class="viz-header">
+          <h3 class="viz-title">Lock → wait → discover</h3>
+          <div class="viz-controls">
+            <button type="button" class="viz-btn" data-run>Run</button>
+            <button type="button" class="viz-btn viz-btn--ghost" data-reset>Reset</button>
+          </div>
+        </div>
+        <div class="seat-row seat-row--focus">
+          <button type="button" class="seat seat--lg" data-seat="A10" data-state="FREE">A10</button>
+        </div>
+        <div class="viz-log" data-log></div>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+        <p class="viz-note">
+          B does not “also see FREE.” B waits, then observes the committed state.
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. ROW VS DB -->
+    <section class="article-section" id="row-vs-db">
+      <h2>5. Row lock vs database lock</h2>
+      <p>
+        Locking A10 should not freeze the theatre. Row-level locking lets another transaction
+        work on A11, A12, B10 while A10 is busy.
+      </p>
+
+      <div class="article-interactive" data-viz="row-lock" data-mode="row-demo">
+        <div class="viz-header">
+          <h3 class="viz-title">Lock only A10</h3>
+          <button type="button" class="viz-btn viz-btn--ghost" data-reset>Reset</button>
+        </div>
+        <div class="seat-grid" role="group" aria-label="Row lock demonstration">
+          <div class="seat-row">
+            <button type="button" class="seat" data-seat="A10" data-state="FREE">A10</button>
+            <button type="button" class="seat" data-seat="A11" data-state="FREE">A11</button>
+            <button type="button" class="seat" data-seat="A12" data-state="FREE">A12</button>
+          </div>
+          <div class="seat-row">
+            <button type="button" class="seat" data-seat="B10" data-state="FREE">B10</button>
+            <button type="button" class="seat" data-seat="B11" data-state="FREE">B11</button>
+            <button type="button" class="seat" data-seat="B12" data-state="FREE">B12</button>
+          </div>
+        </div>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+        <p class="viz-note">Click A10 to toggle a lock. Other seats should keep responding.</p>
+      </div>
+    </section>
+
+    <!-- 6. OPTIMISTIC -->
+    <section class="article-section" id="optimistic">
+      <h2>6. Optimistic locking</h2>
+      <p>
+        Instead of waiting, detect conflict. Each seat carries a <code>version</code>.
+        Updates succeed only if the version you read is still current.
+      </p>
+
+      <pre class="code-block" tabindex="0"><code>UPDATE seats
+SET status = 'BOOKED', version = version + 1
+WHERE seat_number = 'A10' AND version = 5;
+-- 1 row updated → you won
+-- 0 rows updated → someone else committed first</code></pre>
+
+      <div class="article-interactive" data-viz="optimistic">
+        <div class="viz-header">
+          <h3 class="viz-title">Pessimistic vs optimistic</h3>
+          <div class="viz-controls" role="group" aria-label="Locking mode">
+            <button type="button" class="viz-btn" data-lock-mode="pessimistic" aria-pressed="false">Pessimistic</button>
+            <button type="button" class="viz-btn is-active" data-lock-mode="optimistic" aria-pressed="true">Optimistic</button>
+          </div>
+        </div>
+        <div class="version-card">
+          <span>seat_id = A10</span>
+          <span>status = FREE</span>
+          <span>version = <strong data-version>5</strong></span>
+        </div>
+        <div class="viz-controls">
+          <button type="button" class="viz-btn" data-run>Run</button>
+          <button type="button" class="viz-btn viz-btn--ghost" data-reset>Reset</button>
+        </div>
+        <div class="viz-log" data-log></div>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+        <p class="viz-note">
+          Neither approach is universally “better.” Pessimistic waits under contention;
+          optimistic retries under contention. Hot seats often prefer short pessimistic critical sections.
+        </p>
+      </div>
+    </section>
+
+    <!-- 7. PAYMENT -->
+    <section class="article-section" id="payment-locks">
+      <h2>7. Don’t hold database locks during payment</h2>
+      <p>
+        Payment can take seconds to minutes. A row lock that spans payment becomes a throughput bug
+        dressed as correctness.
+      </p>
+
+      <div class="article-interactive" data-viz="payment-compare">
+        <div class="viz-header">
+          <h3 class="viz-title">Bad design vs good design</h3>
+          <div class="viz-controls">
+            <button type="button" class="viz-btn" data-show-bad>Show bad</button>
+            <button type="button" class="viz-btn" data-show-good>Show good</button>
+          </div>
+        </div>
+        <div class="compare-grid">
+          <div class="compare-card" data-bad-lock>
+            <h4>Bad</h4>
+            <ol>
+              <li>BEGIN</li>
+              <li>LOCK SEAT</li>
+              <li>WAIT FOR PAYMENT…</li>
+              <li>3 minutes later…</li>
+              <li>COMMIT</li>
+            </ol>
+            <p>Row remains locked the whole time.</p>
+          </div>
+          <div class="compare-card" data-good-lock>
+            <h4>Good</h4>
+            <p><strong>Tx1</strong>: lock → verify FREE → SET HOLD + expiry → COMMIT</p>
+            <p><strong>Payment</strong>: outside the DB transaction</p>
+            <p><strong>Tx2</strong>: lock → verify HOLD → SET BOOKED → COMMIT</p>
+          </div>
+        </div>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- 8. HOLD -->
+    <section class="article-section" id="hold">
+      <h2>8. Seat hold</h2>
+      <p>
+        A hold is a temporary reservation with an expiry — application state — not a multi-minute
+        database lock.
+      </p>
+
+      <div class="article-interactive" data-viz="hold-timer">
+        <div class="viz-header">
+          <h3 class="viz-title">Hold expiry</h3>
+          <div class="viz-controls">
+            <button type="button" class="viz-btn" data-start-hold>Start hold</button>
+            <button type="button" class="viz-btn viz-btn--ghost" data-reset>Reset</button>
+          </div>
+        </div>
+        <div class="hold-panel">
+          <div class="seat seat--lg" data-hold-seat data-state="HELD">A10 · HELD</div>
+          <div>
+            <p class="hold-timer" data-timer>00:08</p>
+            <p class="viz-hint" data-hold-meta>hold_id: H123</p>
+          </div>
+        </div>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- 9. API -->
+    <section class="article-section" id="api">
+      <h2>9. API design</h2>
+      <p>Two short write paths beat one long “book everything” request.</p>
+
+      <div class="article-interactive" data-viz="api-flow">
+        <div class="viz-header">
+          <h3 class="viz-title">Hold → pay → book</h3>
+          <div class="viz-controls">
+            <button type="button" class="viz-btn viz-btn--ghost" data-prev>Prev</button>
+            <button type="button" class="viz-btn" data-next>Next</button>
+          </div>
+        </div>
+        <div class="api-steps">
+          <div class="api-step is-active" data-api-step>
+            <h4>POST /seat-holds</h4>
+            <pre class="code-block code-block--sm" tabindex="0"><code>{
+  "show_id": "show_123",
+  "seat_ids": ["A10", "A11"]
+}
+
+→ {
+  "hold_id": "hold_456",
+  "status": "HELD",
+  "expires_at": "2026-09-10T17:04:32Z"
+}</code></pre>
+          </div>
+          <div class="api-step" data-api-step>
+            <h4>Payment</h4>
+            <p>Client pays against <code>hold_456</code>. No seat-row lock is held open during this.</p>
+            <pre class="code-block code-block--sm" tabindex="0"><code>{
+  "payment_id": "payment_789",
+  "status": "CAPTURED"
+}</code></pre>
+          </div>
+          <div class="api-step" data-api-step>
+            <h4>POST /bookings</h4>
+            <pre class="code-block code-block--sm" tabindex="0"><code>{
+  "hold_id": "hold_456",
+  "payment_id": "payment_789"
+}
+
+→ {
+  "booking_id": "book_999",
+  "status": "CONFIRMED"
+}</code></pre>
+          </div>
+        </div>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- 10. IDEMPOTENCY -->
+    <section class="article-section" id="idempotency">
+      <h2>10. Idempotency</h2>
+      <p>
+        Timeouts happen after the server already succeeded. Retries without an idempotency key
+        create duplicate bookings — a different bug from seat races.
+      </p>
+
+      <div class="callout callout--split">
+        <div>
+          <h3>Concurrency control</h3>
+          <p>Can two users modify the same seat at the same time?</p>
+        </div>
+        <div>
+          <h3>Idempotency</h3>
+          <p>What happens when the same client sends the same request twice?</p>
+        </div>
+      </div>
+
+      <div class="article-interactive" data-viz="idempotency">
+        <div class="viz-header">
+          <h3 class="viz-title">Retry after a lost response</h3>
+          <div class="viz-controls">
+            <button type="button" class="viz-btn" data-run>Simulate</button>
+            <button type="button" class="viz-btn viz-btn--ghost" data-reset>Reset</button>
+          </div>
+        </div>
+        <p class="booking-count">Bookings created: <strong data-booking-count>0</strong></p>
+        <div class="viz-log" data-log></div>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+        <p class="viz-note">
+          Idempotency protects against duplicate requests.
+          Row locking protects against concurrent seat modification.
+        </p>
+      </div>
+    </section>
+
+    <!-- 11. SCHEMA -->
+    <section class="article-section" id="schema">
+      <h2>11. Database schema</h2>
+      <p>Enough tables to tell the truth. Not a warehouse diagram.</p>
+
+      <div class="schema-grid" aria-label="Schema overview">
+        <div class="schema-card">
+          <h3>seats</h3>
+          <ul>
+            <li>id</li>
+            <li>show_id</li>
+            <li>seat_number</li>
+            <li>status</li>
+            <li>hold_id</li>
+            <li>hold_expires_at</li>
+            <li>version</li>
+          </ul>
+        </div>
+        <div class="schema-card">
+          <h3>seat_holds</h3>
+          <ul>
+            <li>id</li>
+            <li>user_id</li>
+            <li>show_id</li>
+            <li>seat_ids</li>
+            <li>expires_at</li>
+            <li>status</li>
+          </ul>
+        </div>
+        <div class="schema-card">
+          <h3>bookings</h3>
+          <ul>
+            <li>id</li>
+            <li>user_id</li>
+            <li>show_id</li>
+            <li>hold_id</li>
+            <li>payment_id</li>
+            <li>status</li>
+            <li>created_at</li>
+          </ul>
+        </div>
+        <div class="schema-card">
+          <h3>payments</h3>
+          <ul>
+            <li>id</li>
+            <li>hold_id</li>
+            <li>amount</li>
+            <li>status</li>
+            <li>provider_ref</li>
+          </ul>
+        </div>
+        <div class="schema-card">
+          <h3>idempotency_keys</h3>
+          <ul>
+            <li>key</li>
+            <li>user_id</li>
+            <li>request_hash</li>
+            <li>response</li>
+            <li>status</li>
+            <li>created_at</li>
+          </ul>
+        </div>
+        <div class="schema-card">
+          <h3>shows</h3>
+          <ul>
+            <li>id</li>
+            <li>title</li>
+            <li>starts_at</li>
+            <li>venue_id</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. COMPLETE SYSTEM -->
+    <section class="article-section" id="system">
+      <h2>12. Complete system</h2>
+      <p>Click a component to see what it owns.</p>
+
+      <div class="article-interactive" data-viz="architecture">
+        <div class="viz-header">
+          <h3 class="viz-title">Architecture</h3>
+        </div>
+        <div class="arch-flow" role="list">
+          <button type="button" class="arch-node" data-arch-node="client" role="listitem">Client</button>
+          <span class="arch-arrow" aria-hidden="true">↓</span>
+          <button type="button" class="arch-node" data-arch-node="api" role="listitem">Booking API</button>
+          <span class="arch-arrow" aria-hidden="true">↓</span>
+          <button type="button" class="arch-node" data-arch-node="idempotency" role="listitem">Idempotency layer</button>
+          <span class="arch-arrow" aria-hidden="true">↓</span>
+          <button type="button" class="arch-node" data-arch-node="seat" role="listitem">Seat / booking service</button>
+          <span class="arch-arrow" aria-hidden="true">↓</span>
+          <button type="button" class="arch-node" data-arch-node="db" role="listitem">Database</button>
+          <span class="arch-arrow" aria-hidden="true">↔</span>
+          <button type="button" class="arch-node" data-arch-node="payment" role="listitem">Payment service</button>
+        </div>
+        <div class="arch-overlays" aria-label="Cross-cutting concerns">
+          <span class="stat-pill">Idempotency</span>
+          <span class="stat-pill">Row-level locking</span>
+          <span class="stat-pill">Short transactions</span>
+          <span class="stat-pill">Hold expiry</span>
+          <span class="stat-pill">Optimistic / pessimistic CC</span>
+        </div>
+        <p class="arch-detail" data-arch-detail></p>
+        <p class="viz-status" data-status></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+        <ol class="pipeline">
+          <li>Seat selection</li>
+          <li>Seat hold</li>
+          <li>Payment</li>
+          <li>Booking confirmation</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 13. CHEAT SHEET -->
+    <section class="article-section" id="cheatsheet">
+      <h2>13. Cheat sheet</h2>
+      <dl class="cheat-sheet">
+        <div><dt>Race condition</dt><dd>Concurrent requests observe the same state and both act on it.</dd></div>
+        <div><dt>Pessimistic locking</dt><dd>Lock rows before modifying them.</dd></div>
+        <div><dt>SELECT FOR UPDATE</dt><dd>Row-level lock inside a transaction (e.g. PostgreSQL, MySQL/InnoDB).</dd></div>
+        <div><dt>Seat hold</dt><dd>Temporary reservation with expiry — not a long DB lock.</dd></div>
+        <div><dt>Idempotency</dt><dd>Repeated identical request yields the same result.</dd></div>
+        <div><dt>Transaction</dt><dd>Make critical state transitions atomic.</dd></div>
+        <div><dt>Payment</dt><dd>Happens outside the seat-row lock window.</dd></div>
+        <div><dt>Booking confirmation</dt><dd>Lock + validate hold + mark booked atomically.</dd></div>
+      </dl>
+
+      <div class="callout">
+        <p>
+          <strong>Concurrency control and idempotency solve different problems.</strong>
+          One is about two actors fighting over one seat.
+          The other is about one actor accidentally asking twice.
+        </p>
+      </div>
+    </section>
+
+    <nav class="article-footer-nav" aria-label="Article footer">
+      <a href="writing.html">← Writing</a>
+      <span data-view-count="profile" data-pending="true">profile views —</span>
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <div class="container container--prose">
+      <div class="footer-content">
+        <p class="footer-cta">Want the next systems notebook? <a href="mailto:suchithkoduru@gmail.com">Say hello.</a></p>
+        <div class="footer-links">
+          <a href="mailto:suchithkoduru@gmail.com" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+          <a href="https://github.com/suchith83" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/suchith-koduru-34966022b/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <p class="footer-built">Suchith Koduru · suchith.space · <span data-view-count="page" data-view-path="/seat-booking.html" data-pending="true">article views —</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script data-goatcounter="https://suchith.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/seat-booking.js"></script>
+</body>
+</html>

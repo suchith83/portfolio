@@ -10,9 +10,11 @@ Reference for future sessions working on this portfolio (`suchith.space`).
 |---|---|
 | `index.html` | Home — hero, about, selected projects, experience, writing teaser, toolkit, contact |
 | `projects.html` | Engineering case studies (work / OSS / personal) |
-| `writing.html` | Writing index + article-ready typography shell |
-| `styles.css` | Design tokens, layout, components, responsive + reduced-motion |
-| `js/script.js` | Theme (localStorage `theme` + system preference), mobile nav ARIA, card click, reveal |
+| `writing.html` | Writing index |
+| `seat-booking.html` | Interactive systems article: seat booking concurrency |
+| `styles.css` | Design tokens, layout, components, article viz, responsive + reduced-motion |
+| `js/script.js` | Theme, mobile nav ARIA, card click, reveal, GoatCounter view counters |
+| `js/seat-booking.js` | Modular interactive demos for the seat-booking article |
 | `assets/images/` | Profile photo + optimized project thumbs (JPEG, ~1200×720) |
 | `assets/images/IMAGE_PROMPTS.md` | Editorial illustration prompts |
 | `fonts/` | Geist Sans + Geist Mono (self-hosted woff2) |
@@ -66,13 +68,39 @@ Thumbnails: prefer optimized JPEG under ~100KB. Inline SVG diagrams are fine whe
 
 ---
 
-## Writing route
+## Writing & interactive articles
 
-`writing.html` is ready for the interactive technical article:
+- Index: [`writing.html`](writing.html)
+- Published article: [`seat-booking.html`](seat-booking.html) — “How Do You Stop Two People From Booking the Same Seat?”
+- Article script modules live in `js/seat-booking.js` as small controllers (`SeatGrid`, `ConcurrentRequests`, `RowLockVisualizer`, `OptimisticLockDemo`, `HoldTimer`, `ApiFlow`, `IdempotencyDemo`, `SystemArchitecture`, …)
+- Markup: `.system-article`, `.article-interactive[data-viz="…"]`, `.viz-*`, seat states `FREE|HELD|BOOKED|LOCKED`
+- Every interactive block must keep a short non-interactive note + `aria-live` status
+- Respect `prefers-reduced-motion` (step delays → 0)
 
-- Index list with draft card
-- `.article-shell` / `.article-title` / `.article-lede` / `.article-body` / `.article-placeholder`
-- Reserved hook class: `.article-interactive`
+### Future articles
+
+1. Add `article-name.html` using the same nav/footer/theme shell
+2. Prefer a dedicated `js/article-name.js` rather than bloating `script.js`
+3. Link from `writing.html` and optionally the home Writing teaser
+4. Use `data-view-count="page" data-view-path="/article-name.html"` for article views
+
+---
+
+## View counters (GoatCounter)
+
+- Tracker: `https://suchith.goatcounter.com/count` via `//gc.zgo.at/count.js` on every public HTML page
+- Public JSON: `https://suchith.goatcounter.com/counter/PATH.json`
+- Profile views: path `/` via `data-view-count="profile"`
+- Article views: exact path e.g. `/seat-booking.html` via `data-view-count="page" data-view-path="…"`
+- Labels say **views**, not unique visitors
+- Counters fail soft (`profile views —` / `article views —`) if blocked or not activated
+
+### One-time setup
+
+1. Create/confirm GoatCounter site code **`suchith`** → `suchith.goatcounter.com`
+2. Point the site at `suchith.space`
+3. Enable **Allow adding visitor counts on your website**
+4. Keep canonical paths stable (`/`, `/seat-booking.html`, …)
 
 ---
 
@@ -117,4 +145,4 @@ Private cards: add `project-card--private`, no title link, use `.project-badge`.
 
 - GitHub Pages + custom domain `suchith.space` (`CNAME`)
 - No build step — plain HTML/CSS/JS
-- Analytics: Google Analytics `G-BFC42ZF5NR`
+- Analytics: Google Analytics `G-BFC42ZF5NR` + GoatCounter `suchith`

@@ -135,10 +135,74 @@
     items.forEach((el) => observer.observe(el));
   }
 
+  const GOAT_CODE = 'suchith';
+  const GOAT_BASE = `https://${GOAT_CODE}.goatcounter.com`;
+
+  function normalizeCountPath(path) {
+    if (!path || path === '/' || path === '/index.html') return '/';
+    return path.replace(/\/$/, '') || '/';
+  }
+
+  async function fetchViewCount(path) {
+    const normalized = normalizeCountPath(path);
+    const url = `${GOAT_BASE}/counter/${encodeURIComponent(normalized)}.json`;
+    const res = await fetch(url, { mode: 'cors', credentials: 'omit' });
+    if (!res.ok) throw new Error(`counter ${res.status}`);
+    const data = await res.json();
+    return data.count || data.count_unique || '0';
+  }
+
+  function setCounterLabel(el, count, label) {
+    if (!el) return;
+    el.textContent = `${count} ${label}`;
+    el.removeAttribute('data-pending');
+  }
+
+  function setCounterFallback(el, label) {
+    if (!el) return;
+    el.textContent = label;
+    el.setAttribute('data-pending', 'true');
+  }
+
+  function initViewCounters() {
+    const nodes = document.querySelectorAll('[data-view-count]');
+    if (!nodes.length) return;
+
+    nodes.forEach((el) => {
+      const kind = el.getAttribute('data-view-count');
+      const customPath = el.getAttribute('data-view-path');
+      let path = customPath;
+      let fallback = 'views —';
+      let label = 'views';
+
+      if (kind === 'profile') {
+        path = path || '/';
+        fallback = 'profile views —';
+        label = 'profile views';
+      } else if (kind === 'page') {
+        path = path || normalizeCountPath(window.location.pathname);
+        fallback = 'article views —';
+        label = 'article views';
+      } else {
+        path = path || normalizeCountPath(window.location.pathname);
+      }
+
+      setCounterFallback(el, fallback);
+
+      fetchViewCount(path)
+        .then((count) => setCounterLabel(el, count, label))
+        .catch(() => {
+          // Site may not be activated yet, or privacy blockers may deny the request.
+          setCounterFallback(el, fallback);
+        });
+    });
+  }
+
   function init() {
     initTheme();
     initClickableCards();
     initReveals();
+    initViewCounters();
 
     const themeBtn = document.querySelector('.theme-toggle');
     if (themeBtn) themeBtn.addEventListener('click', toggleTheme);

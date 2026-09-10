@@ -14,6 +14,7 @@ Open http://127.0.0.1:8765
 
 - `index.html` — home
 - `projects.html` — case studies
-- `writing.html` — writing index (article shell ready)
+- `writing.html` — writing index
+- `seat-booking.html` — interactive concurrency article
 
-See `PORTFOLIO_RULES.md` for design and content conventions.
+See `PORTFOLIO_RULES.md` for design, GoatCounter, and content conventions.

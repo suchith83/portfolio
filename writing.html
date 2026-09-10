@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Writing — Suchith Koduru</title>
 
-  <meta name="description" content="Technical writing by Suchith Koduru — notes on agents, memory, voice AI, and production systems.">
+  <meta name="description" content="Technical writing by Suchith Koduru — interactive systems notes on concurrency, agents, and production engineering.">
   <meta name="author" content="Suchith Koduru">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
@@ -57,51 +57,24 @@
     <div class="container">
       <div class="page-header">
         <h1>Writing</h1>
-        <p>Longer notes on agents, memory, voice loops, and the production details that don’t fit in a project card.</p>
+        <p>Interactive systems notes — concurrency, agents, and the production details that don’t fit in a project card.</p>
       </div>
 
-      <div class="writing-list" style="max-width: 720px; padding-bottom: 48px;">
-        <article class="writing-card writing-card--draft" aria-labelledby="draft-title">
+      <div class="writing-list" style="max-width: 720px; padding-bottom: 80px;">
+        <a class="writing-card" href="seat-booking.html">
           <div class="writing-card__meta">
-            <span>Technical article</span>
-            <span>Draft</span>
+            <span>Systems notebook</span>
+            <span>Interactive</span>
+            <span data-view-count="page" data-view-path="/seat-booking.html" data-pending="true">article views —</span>
           </div>
-          <h2 class="writing-card__title" id="draft-title">On agents that remember — and ones that shouldn’t</h2>
+          <h2 class="writing-card__title">How Do You Stop Two People From Booking the Same Seat?</h2>
           <p class="writing-card__excerpt">
-            An interactive technical piece in progress: short-term checkpointers vs long-term vector memory,
-            when retrieval helps, when it pollutes context, and how production agent stacks actually wire both.
+            An interactive walkthrough of race conditions, row-level locking, seat holds,
+            payment outside transactions, and idempotent booking APIs.
           </p>
-        </article>
+        </a>
       </div>
     </div>
-
-    <!-- Article-ready shell: reuse for the interactive piece in the next task -->
-    <article class="article-shell reveal" aria-label="Article template preview">
-      <p class="article-kicker">Article template · ready for content</p>
-      <h2 class="article-title">How this page will host the next piece</h2>
-      <p class="article-lede">
-        Typography, spacing, and section rhythm are already wired.
-        The interactive diagrams and narrative go here — without inventing claims or padding copy.
-      </p>
-      <div class="article-body">
-        <h2>What belongs in an article here</h2>
-        <p>
-          Concrete engineering: latency budgets, memory topologies, failure modes, and tradeoffs
-          from systems I’ve actually shipped. No generic “future of AI” essays.
-        </p>
-        <div class="article-placeholder">
-          <p>
-            Placeholder for interactive blocks (diagrams, toggles, micro-demos).
-            Hook class: <code>.article-interactive</code> — to be filled in the next task.
-          </p>
-        </div>
-        <h2>Reading experience</h2>
-        <p>
-          Instrument Serif for titles, Geist for body, mono for metadata.
-          Same accent and focus rules as the rest of the site so Writing feels native, not bolted on.
-        </p>
-      </div>
-    </article>
   </main>
 
   <footer class="footer">
@@ -119,11 +92,13 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
         </div>
-        <p class="footer-built">Suchith Koduru · suchith.space</p>
+        <p class="footer-built">Suchith Koduru · suchith.space · <span data-view-count="profile" data-pending="true">profile views —</span></p>
       </div>
     </div>
   </footer>
 
+  <script data-goatcounter="https://suchith.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
