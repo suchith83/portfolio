@@ -1,19 +1,15 @@
 # Project Screenshots and Images
 
-Place your project screenshots and profile photo here.
+Place profile and project images here.
 
-## Recommended Images:
+## Current assets
 
-1. **profile.jpg** - Your professional photo (square, 400x400px minimum)
+1. **profile.jpg** — professional photo (square)
+2. **agentflow.jpg**, **deep-research.jpg**, **churn.jpg**, **mcp-pg.jpg**, **robot.jpg** — optimized editorial thumbs (~1200×720 JPEG)
 
-2. **projects/** folder for project screenshots:
-   - `agentflow.png` - Screenshot of Agentflow contributions
-   - `deep-research.png` - Screenshot of the Deep Research Agent demo
-   - `drum-kit.png` - Screenshot of the Drum Kit app
-   - `simon-game.png` - Screenshot of Simon Game
+## Guidelines
 
-## Image Guidelines:
-- Use WebP or optimized PNG/JPG formats
-- Keep file sizes under 200KB for fast loading
-- Use aspect ratio 16:10 for project screenshots
-- Use square aspect ratio for profile photo
+- Prefer JPEG for these illustrations after export
+- Keep file sizes under ~100KB when possible
+- Card CSS uses aspect-ratio 16:9; case studies use 16:10
+- See `IMAGE_PROMPTS.md` for generation style

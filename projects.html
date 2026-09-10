@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects — Suchith Koduru</title>
 
-  <meta name="description" content="Projects by Suchith Koduru — LLM agents, multi-agent systems, ML pipelines, and more.">
+  <meta name="description" content="Engineering case studies by Suchith Koduru — LLM agents, voice AI, MCP tooling, and ML systems.">
   <meta name="author" content="Suchith Koduru">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
@@ -29,157 +29,336 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">Suchith Koduru</a>
       <div class="nav-right">
-        <ul class="nav-menu" role="list">
-          <li><a href="index.html#story" class="nav-link">About</a></li>
+        <ul class="nav-menu" role="list" id="primary-nav">
+          <li><a href="index.html#about" class="nav-link">About</a></li>
           <li><a href="projects.html" class="nav-link active">Projects</a></li>
+          <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+          <li><a href="writing.html" class="nav-link">Writing</a></li>
           <li><a href="resume.pdf" class="nav-link" target="_blank" rel="noopener">Resume</a></li>
         </ul>
-        <button class="theme-toggle" aria-label="Toggle theme">
-          <svg class="theme-icon theme-icon--moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="theme-icon theme-icon--sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <button class="theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+          <svg class="theme-icon theme-icon--moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="theme-icon theme-icon--sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
-        <button class="nav-toggle" aria-label="Toggle navigation">
-          <span class="hamburger"></span>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+          <span class="hamburger" aria-hidden="true"></span>
         </button>
       </div>
     </div>
   </nav>
 
-  <main>
+  <main id="main">
     <div class="container">
       <div class="page-header">
         <h1>Projects</h1>
-        <p>Things I've built, shipped at work, and contributed to.</p>
+        <p>Engineering notes on systems I built or contributed to — problem, architecture, decisions, and measured impact where I have it.</p>
       </div>
 
-      <!-- Personal Projects -->
-      <h3 class="section-group-label">Personal Projects</h3>
-      <div class="projects-grid projects-grid--three">
+      <h2 class="section-group-label">At 10xScale.ai</h2>
+      <div class="case-list">
 
-        <div class="project-card project-card--hover">
-          <div class="project-thumb">
-            <img src="assets/images/deep-research.png" alt="Deep Research Agent" loading="lazy" onerror="this.style.display='none'">
-            <span class="project-thumb-fallback" aria-hidden="true">D</span>
+        <article class="case-study case-study--private reveal">
+          <div class="case-visual">
+            <div class="case-diagram" aria-hidden="true">
+              <svg viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="48" width="52" height="36" rx="6" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+                <text x="34" y="70" text-anchor="middle" font-size="9" fill="currentColor" font-family="ui-monospace, monospace">skills</text>
+                <path d="M60 66 H88" stroke="currentColor" stroke-width="1.5" opacity="0.45"/>
+                <rect x="88" y="36" width="64" height="60" rx="8" stroke="currentColor" stroke-width="1.5"/>
+                <circle class="accent" cx="120" cy="66" r="10" opacity="0.9"/>
+                <text x="120" y="110" text-anchor="middle" font-size="9" fill="currentColor" font-family="ui-monospace, monospace">AgentFlow</text>
+                <path d="M152 66 H180" stroke="currentColor" stroke-width="1.5" opacity="0.45"/>
+                <rect x="180" y="28" width="52" height="28" rx="5" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+                <text x="206" y="46" text-anchor="middle" font-size="8" fill="currentColor" font-family="ui-monospace, monospace">SSE</text>
+                <rect x="180" y="76" width="52" height="28" rx="5" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+                <text x="206" y="94" text-anchor="middle" font-size="8" fill="currentColor" font-family="ui-monospace, monospace">Qdrant</text>
+              </svg>
+            </div>
           </div>
-          <div class="project-body">
-            <h3 class="project-title">
-              <a href="https://huggingface.co/spaces/Agents-MCP-Hackathon/deepsearch" target="_blank" rel="noopener" class="project-title-link">
-                Deep Research Agent
-                <svg class="project-title-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-              </a>
-            </h3>
-            <p class="project-desc">Autonomous web research agent built for the HuggingFace MCP Hackathon. Researches topics, synthesizes sources, and writes comprehensive answers.</p>
-            <ul class="project-tech" role="list">
-              <li>Python</li>
-              <li>MCP</li>
-              <li>LangChain</li>
-              <li>HuggingFace</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="project-card project-card--hover">
-          <div class="project-thumb">
-            <img src="assets/images/churn.png" alt="Customer Churn Prediction" loading="lazy" onerror="this.style.display='none'">
-            <span class="project-thumb-fallback" aria-hidden="true">C</span>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">
-              <a href="https://github.com/suchith83/Churn-Prediction" target="_blank" rel="noopener" class="project-title-link">
-                Customer Churn Prediction
-                <svg class="project-title-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-              </a>
-            </h3>
-            <p class="project-desc">End-to-end ML pipeline for telecom churn using Random Forest with SMOTE, SHAP interpretability, and threshold optimization.</p>
-            <ul class="project-tech" role="list">
-              <li>Python</li>
-              <li>Scikit-learn</li>
-              <li>SHAP</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- At 10xscale.ai -->
-      <h3 class="section-group-label">At 10xscale.ai</h3>
-      <div class="projects-grid projects-grid--three">
-
-        <div class="project-card project-card--hover project-card--private">
-          <div class="project-thumb">
-            <img src="assets/images/mcp-pg.png" alt="MCP PostgreSQL Server" loading="lazy" onerror="this.style.display='none'">
-            <span class="project-thumb-fallback" aria-hidden="true">M</span>
-          </div>
-          <div class="project-body">
-            <div class="project-title-row">
-              <h3 class="project-title">MCP PostgreSQL Server</h3>
+          <div class="case-content">
+            <div class="case-top">
+              <h3 class="case-title">Domain-specialized medical agent</h3>
               <span class="project-badge">Private</span>
             </div>
-            <p class="project-desc">MCP server enabling natural language querying of PostgreSQL databases for agent integration.</p>
-            <ul class="project-tech" role="list">
-              <li>Python</li>
-              <li>FastMCP</li>
-              <li>PostgreSQL</li>
-            </ul>
+            <div class="case-meta">
+              <span><strong>Role</strong> owner</span>
+              <span><strong>Stack</strong> AgentFlow · FastAPI · SSE · Qdrant</span>
+            </div>
+            <div class="case-body">
+              <div class="case-block">
+                <h4>Problem</h4>
+                <p>Need a conversational medical agent that follows skill-specific playbooks and takes real actions — not open-ended chat.</p>
+              </div>
+              <div class="case-block">
+                <h4>What I built</h4>
+                <ul>
+                  <li>StateGraph + ToolNode agent with per-skill playbooks loaded at runtime (triage, booking, medication guidance).</li>
+                  <li>FastAPI service with SSE-streamed responses; checkpointer for short-term context; Qdrant for cross-session memory.</li>
+                  <li>Transactional tools: doctor availability, appointment booking, structured DB queries.</li>
+                </ul>
+              </div>
+              <div class="case-block">
+                <h4>Decision</h4>
+                <p>Runtime playbooks over a monolithic prompt — skills stay swappable without redeploying the whole graph.</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
 
-        <div class="project-card project-card--hover project-card--private">
-          <div class="project-thumb">
-            <img src="assets/images/robot.png" alt="AI Raspberry Pi Robot" loading="lazy" onerror="this.style.display='none'">
-            <span class="project-thumb-fallback" aria-hidden="true">R</span>
+        <article class="case-study case-study--private reveal">
+          <div class="case-visual">
+            <img src="assets/images/robot.jpg" alt="Schematic illustration of an edge voice assistant" loading="lazy" onerror="this.style.display='none'">
           </div>
-          <div class="project-body">
-            <div class="project-title-row">
-              <h3 class="project-title">AI-Powered Raspberry Pi Robot</h3>
+          <div class="case-content">
+            <div class="case-top">
+              <h3 class="case-title">Voice-enabled edge medical kiosk</h3>
               <span class="project-badge">Private</span>
             </div>
-            <p class="project-desc">Raspberry Pi robot with real-time LLM-generated responses for live demos. Integrates hardware with on-device AI inference.</p>
-            <ul class="project-tech" role="list">
-              <li>Python</li>
-              <li>Raspberry Pi</li>
-              <li>LLM APIs</li>
-            </ul>
+            <div class="case-meta">
+              <span><strong>Role</strong> end-to-end owner</span>
+              <span><strong>Stack</strong> Raspberry Pi 5 · PySide6 · FastAPI · Twilio</span>
+            </div>
+            <div class="case-body">
+              <div class="case-block">
+                <h4>Problem</h4>
+                <p>Kiosk-side voice assistant that must feel responsive in Indic languages while staying wired to the same agent backend.</p>
+              </div>
+              <div class="case-block">
+                <h4>What I built</h4>
+                <ul>
+                  <li>Async VAD → STT → Agent → TTS pipeline on Pi 5 with per-turn language auto-detection across 11 Indic languages.</li>
+                  <li>Integrated backend APIs, agent service, web app, and desktop app into one production path.</li>
+                  <li>WhatsApp via Twilio: inbound PDF/image extraction with Gemini Vision; outbound consultation summaries.</li>
+                </ul>
+              </div>
+              <div class="case-stats">
+                <span class="stat-pill">~70% barge-in latency ↓ (1000→300 ms)</span>
+                <span class="stat-pill">11 Indic languages</span>
+              </div>
+              <div class="case-block">
+                <h4>Decision</h4>
+                <p>Flush OS audio buffer on stop-TTS and chunk TTS at the first sentence — barge-in felt broken until both landed.</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
 
+        <article class="case-study case-study--private reveal">
+          <div class="case-visual">
+            <div class="case-diagram" aria-hidden="true">
+              <svg viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="20" y="28" font-size="9" fill="currentColor" font-family="ui-monospace, monospace" opacity="0.7">STT</text>
+                <path d="M40 36 H40 52" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+                <rect x="16" y="52" width="48" height="28" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                <text x="40" y="70" text-anchor="middle" font-size="9" fill="currentColor" font-family="ui-monospace, monospace">VAD</text>
+                <path class="accent" d="M64 66 H96" stroke-width="1.75" fill="none"/>
+                <rect x="96" y="48" width="56" height="36" rx="6" stroke="currentColor" stroke-width="1.5"/>
+                <text x="124" y="70" text-anchor="middle" font-size="9" fill="currentColor" font-family="ui-monospace, monospace">LLM</text>
+                <path class="accent" d="M152 66 H184" stroke-width="1.75" fill="none"/>
+                <rect x="184" y="52" width="40" height="28" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                <text x="204" y="70" text-anchor="middle" font-size="9" fill="currentColor" font-family="ui-monospace, monospace">TTS</text>
+                <text x="120" y="118" text-anchor="middle" font-size="9" fill="currentColor" font-family="ui-monospace, monospace">&lt;700 ms turn</text>
+              </svg>
+            </div>
+          </div>
+          <div class="case-content">
+            <div class="case-top">
+              <h3 class="case-title">Enterprise AI interview platform</h3>
+              <span class="project-badge">Private</span>
+            </div>
+            <div class="case-meta">
+              <span><strong>Role</strong> agent + voice + eval</span>
+              <span><strong>Stack</strong> MCP · Electron · React · JSON-RPC</span>
+            </div>
+            <div class="case-body">
+              <div class="case-block">
+                <h4>Problem</h4>
+                <p>Voice interviewer that can run CV, DSA, system-design, and behavioral rounds with persistent state and automated coding evaluation.</p>
+              </div>
+              <div class="case-block">
+                <h4>What I built</h4>
+                <ul>
+                  <li>Agent logic for dynamic questions, round progression, evaluation flow, MCP question bank.</li>
+                  <li>Backend APIs to execute coding snippets against tests; transcript + per-round aggregation into a final report.</li>
+                  <li>Real-time voice loop with VAD endpointing, TTS pre-warming, token streaming, barge-in; Electron sidecar integration.</li>
+                </ul>
+              </div>
+              <div class="case-stats">
+                <span class="stat-pill">sub-700 ms voice turn latency</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-study case-study--private reveal">
+          <div class="case-visual">
+            <img src="assets/images/mcp-pg.jpg" alt="Illustration of MCP bridging a database and tools" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="case-content">
+            <div class="case-top">
+              <h3 class="case-title">MCP server &amp; database-aware agent</h3>
+              <span class="project-badge">Private</span>
+            </div>
+            <div class="case-meta">
+              <span><strong>Stack</strong> FastMCP · PostgreSQL · Typesense</span>
+            </div>
+            <div class="case-body">
+              <div class="case-block">
+                <h4>Problem</h4>
+                <p>Agents hallucinating facts about structured course/job data instead of querying the source of truth.</p>
+              </div>
+              <div class="case-block">
+                <h4>What I built</h4>
+                <ul>
+                  <li>Custom MCP server exposing NL→SQL and Typesense keyword + embedding search, behind auth middleware.</li>
+                  <li>Wired into a multi-agent database node that discovers tools, plans calls, and grounds answers in real data.</li>
+                </ul>
+              </div>
+              <div class="case-block">
+                <h4>Impact</h4>
+                <p>Factual questions stop depending on model memory — tools become the retrieval path.</p>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
 
-      <!-- Open Source Contributions -->
-      <h3 class="section-group-label">Open Source</h3>
-      <div class="projects-grid projects-grid--three">
-
-        <div class="project-card project-card--hover">
-          <div class="project-thumb project-thumb--static">
-            <img src="assets/images/agentflow.png" alt="Agentflow" loading="lazy" onerror="this.style.display='none'">
-            <span class="project-thumb-fallback" aria-hidden="true">A</span>
+      <h2 class="section-group-label">Open source</h2>
+      <div class="case-list">
+        <article class="case-study reveal">
+          <div class="case-visual">
+            <img src="assets/images/agentflow.jpg" alt="Illustration of an agent orchestration graph" loading="lazy" onerror="this.style.display='none'">
           </div>
-          <div class="project-body">
-            <h3 class="project-title">
-              <a href="https://github.com/10xHub/Agentflow" target="_blank" rel="noopener" class="project-title-link">
-                Agentflow
-                <svg class="project-title-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-              </a>
-            </h3>
-            <p class="project-desc">Contributed to this open-source AI agent framework. Work focused on code structure and unit test coverage.</p>
-            <div class="pr-pills">
-              <a href="https://github.com/10xHub/Agentflow/pull/17" target="_blank" rel="noopener" class="pr-pill">↗ PR #17</a>
-              <a href="https://github.com/10xHub/Agentflow/pull/18" target="_blank" rel="noopener" class="pr-pill">↗ PR #18</a>
-              <a href="https://github.com/10xHub/Agentflow/pull/19" target="_blank" rel="noopener" class="pr-pill">↗ PR #19</a>
+          <div class="case-content">
+            <div class="case-top">
+              <h3 class="case-title">
+                <a href="https://github.com/10xHub/Agentflow" target="_blank" rel="noopener">
+                  AgentFlow
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </h3>
             </div>
-            <ul class="project-tech" role="list">
-              <li>Python</li>
-              <li>LangChain</li>
-              <li>Unit Testing</li>
-            </ul>
+            <div class="case-meta">
+              <span><strong>Contribution</strong> memory + adapter</span>
+            </div>
+            <div class="case-body">
+              <div class="case-block">
+                <h4>What I shipped</h4>
+                <ul>
+                  <li>Qdrant-backed long-term memory module for cross-session agent context.</li>
+                  <li>Hardened Google GenAI adapter against empty / None-content edge cases with regression tests.</li>
+                </ul>
+              </div>
+              <div class="pr-pills">
+                <a href="https://github.com/10xHub/Agentflow/pull/17" target="_blank" rel="noopener" class="pr-pill">↗ PR #17</a>
+                <a href="https://github.com/10xHub/Agentflow/pull/19" target="_blank" rel="noopener" class="pr-pill">↗ PR #19</a>
+              </div>
+              <ul class="project-tech" role="list">
+                <li>Python</li>
+                <li>Qdrant</li>
+                <li>AgentFlow</li>
+              </ul>
+            </div>
           </div>
-        </div>
+        </article>
+      </div>
 
+      <h2 class="section-group-label">Personal &amp; coursework</h2>
+      <div class="case-list">
+        <article class="case-study reveal">
+          <div class="case-visual">
+            <img src="assets/images/deep-research.jpg" alt="Illustration of a research agent searching a knowledge graph" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="case-content">
+            <div class="case-top">
+              <h3 class="case-title">
+                <a href="https://huggingface.co/spaces/Agents-MCP-Hackathon/deepsearch" target="_blank" rel="noopener">
+                  Deep Research Agent
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </h3>
+            </div>
+            <div class="case-meta">
+              <span><strong>Context</strong> Hugging Face MCP Hackathon</span>
+              <span><strong>Stack</strong> Python · MCP · LangChain</span>
+            </div>
+            <div class="case-body">
+              <div class="case-block">
+                <h4>What I built</h4>
+                <p>Autonomous web research agent that researches topics, synthesizes sources, and writes comprehensive answers via MCP tooling.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-study reveal">
+          <div class="case-visual">
+            <img src="assets/images/churn.jpg" alt="Minimal bar chart illustration for churn modeling" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="case-content">
+            <div class="case-top">
+              <h3 class="case-title">
+                <a href="https://github.com/suchith83/Churn-Prediction" target="_blank" rel="noopener">
+                  Customer churn prediction
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </h3>
+            </div>
+            <div class="case-meta">
+              <span><strong>Stack</strong> Scikit-learn · SHAP · SMOTE</span>
+            </div>
+            <div class="case-body">
+              <div class="case-block">
+                <h4>What I built</h4>
+                <p>End-to-end telecom churn pipeline: class-imbalance handling, Random Forest tuning, SHAP interpretability, and threshold optimization against business objectives.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-study reveal">
+          <div class="case-visual">
+            <div class="case-diagram" aria-hidden="true">
+              <svg viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="40" cy="70" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="40" cy="100" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <circle class="accent" cx="120" cy="50" r="5"/>
+                <circle cx="120" cy="80" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="120" cy="110" r="5" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+                <circle cx="200" cy="55" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="200" cy="95" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M45 40 L115 50 M45 70 L115 50 M45 70 L115 80 M45 100 L115 80 M125 50 L195 55 M125 80 L195 55 M125 80 L195 95" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+                <text x="120" y="24" text-anchor="middle" font-size="9" fill="currentColor" font-family="ui-monospace, monospace">WRN-28-10 + SAM</text>
+              </svg>
+            </div>
+          </div>
+          <div class="case-content">
+            <div class="case-top">
+              <h3 class="case-title">CIFAR-100 high-confidence classification</h3>
+              <span class="project-badge">Coursework</span>
+            </div>
+            <div class="case-meta">
+              <span><strong>When</strong> Sep ’24 – Nov ’24</span>
+              <span><strong>Stack</strong> PyTorch · WideResNet · SAM</span>
+            </div>
+            <div class="case-body">
+              <div class="case-block">
+                <h4>What I built</h4>
+                <ul>
+                  <li>WideResNet (WRN-28-10) with Sharpness-Aware Minimization for generalization.</li>
+                  <li>Temperature scaling calibration to improve reliability on high-confidence outputs.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
 
       <div style="padding-bottom: 80px;"></div>
@@ -189,19 +368,19 @@
   <footer class="footer">
     <div class="container container--prose">
       <div class="footer-content">
-        <p class="footer-cta">Open to interesting problems. <a href="mailto:suchith1646@gmail.com">Say hello.</a></p>
+        <p class="footer-cta">Want more detail? <a href="mailto:suchithkoduru@gmail.com">Ask me.</a></p>
         <div class="footer-links">
-          <a href="mailto:suchith1646@gmail.com" aria-label="Email">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <a href="mailto:suchithkoduru@gmail.com" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </a>
           <a href="https://github.com/suchith83" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           </a>
           <a href="https://www.linkedin.com/in/suchith-koduru-34966022b/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
         </div>
-        <p class="footer-built">Built by Suchith Koduru</p>
+        <p class="footer-built">Suchith Koduru · suchith.space</p>
       </div>
     </div>
   </footer>

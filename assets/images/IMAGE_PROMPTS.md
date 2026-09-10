@@ -1,7 +1,7 @@
 # Portfolio Thumbnail Image Prompts
 
-Generate each image at **1200×720 px** (aspect ratio 5:3).
-Save as PNG with the exact filename shown.
+Generate each image at **1200×720 px** (aspect ratio ~16:9 / 5:3).
+Export as JPEG (quality ~80–85) with the exact filename shown — site uses `.jpg` for weight.
 Drop all images into: `portfolio/assets/images/`
 
 ## Style guide (apply to every prompt)
@@ -14,7 +14,7 @@ Drop all images into: `portfolio/assets/images/`
 
 ---
 
-## 1. `agentflow.png`
+## 1. `agentflow.jpg`
 
 **Card:** Agentflow Contributions
 
@@ -23,7 +23,7 @@ Flat editorial illustration. Off-white background (#F8F5F0). A directed graph of
 
 ---
 
-## 2. `deep-research.png`
+## 2. `deep-research.jpg`
 
 **Card:** Deep Research Agent
 
@@ -32,7 +32,7 @@ Flat editorial illustration. Off-white background (#F8F5F0). A simple magnifying
 
 ---
 
-## 3. `mcp-pg.png`
+## 3. `mcp-pg.jpg`
 
 **Card:** MCP PostgreSQL Server
 
@@ -41,7 +41,7 @@ Flat editorial illustration. Off-white background (#F8F5F0). Two simple geometri
 
 ---
 
-## 4. `churn.png`
+## 4. `churn.jpg`
 
 **Card:** Customer Churn Prediction
 
@@ -50,7 +50,7 @@ Flat editorial illustration. Off-white background (#F8F5F0). A simple horizontal
 
 ---
 
-## 5. `cifar.png`
+## 5. `cifar.jpg`
 
 **Card:** CIFAR-100 Classification
 
@@ -59,7 +59,7 @@ Flat editorial illustration. Off-white background (#F8F5F0). A very simple neura
 
 ---
 
-## 6. `robot.png`
+## 6. `robot.jpg`
 
 **Card:** AI-Powered Raspberry Pi Robot
 

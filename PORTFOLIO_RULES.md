@@ -8,12 +8,13 @@ Reference for future sessions working on this portfolio (`suchith.space`).
 
 | File | Purpose |
 |---|---|
-| `index.html` | Home page — hero, about, 3 featured projects, background |
-| `projects.html` | Full projects page — 3 categorised sections |
-| `styles.css` | All styles — CSS variables, layout, components |
-| `js/script.js` | Theme toggle + mobile nav only. No animation logic. |
-| `assets/images/` | Profile photo + project thumbnails (1200×720 px) |
-| `assets/images/IMAGE_PROMPTS.md` | ChatGPT/Gemini prompts for each thumbnail |
+| `index.html` | Home — hero, about, selected projects, experience, writing teaser, toolkit, contact |
+| `projects.html` | Engineering case studies (work / OSS / personal) |
+| `writing.html` | Writing index + article-ready typography shell |
+| `styles.css` | Design tokens, layout, components, responsive + reduced-motion |
+| `js/script.js` | Theme (localStorage `theme` + system preference), mobile nav ARIA, card click, reveal |
+| `assets/images/` | Profile photo + optimized project thumbs (JPEG, ~1200×720) |
+| `assets/images/IMAGE_PROMPTS.md` | Editorial illustration prompts |
 | `fonts/` | Geist Sans + Geist Mono (self-hosted woff2) |
 | `resume.pdf` | CV — replace file to update |
 | `CNAME` | `suchith.space` — do not edit |
@@ -22,92 +23,74 @@ Reference for future sessions working on this portfolio (`suchith.space`).
 
 ## Design principles
 
-- **Light by default**, dark mode via toggle (localStorage key `theme`)
-- **No gradients, no glow, no animated reveals** — page appears instantly
-- **One accent color**: terracotta `#B5483A` (light) / `#D46A5C` (dark). Used only on links, CTAs, PR pills, "Now" label. Nowhere else.
+- **Warm paper light by default**, dark mode via toggle (localStorage key `theme`; falls back to `prefers-color-scheme`)
+- **~80% clean / 20% personality** — numbered sections, sparse serif annotations, architecture SVGs, mono metadata
+- **No gradients, no glow, no scroll-jacking, no animation libraries**
+- **One accent color**: terracotta `#B5483A` (light) / `#D46A5C` (dark)
 - **Hero font**: Instrument Serif (Google Fonts), weight 400. Body/UI: Geist Sans. Code/tags: Geist Mono.
-- **Grid background** on hero only — faint 40px lines, masked with radial gradient, opacity 0.6
-- **Cards lift** `translateY(-4px)` on hover via `.project-card--hover`. No shadow burst, no color change.
-- **Whole card is clickable** — clicking anywhere on a `.project-card--hover` opens the title link in a new tab (via JS in `script.js`). Inner links like PR pills still work independently — clicks on them don't bubble up to the card handler. The diagonal arrow (↗) on the title slides in whenever the card is hovered.
+- **Subtle reveals** via IntersectionObserver; fully disabled under `prefers-reduced-motion`
+- **Whole featured card is clickable** when it has `.project-title-link` (not private cards)
 
 ---
 
-## Project categories (projects.html)
+## Navigation
 
-Three sections with `<h3 class="section-group-label">` headings:
+`About` · `Projects` · `Experience` · `Writing` · `Resume`
 
-### Personal Projects
-Projects you built yourself.
-- Deep Research Agent → HuggingFace Space link
-- Customer Churn Prediction → GitHub
+Contact lives in the home contact panel + footer (email / GitHub / LinkedIn). Prefer **Writing** over Blog.
 
-### At 10xscale.ai
-Work done at your job. Mark as `project-card--private` (no link on title, "Private" badge).
-- MCP PostgreSQL Server
-- AI-Powered Raspberry Pi Robot
-
-### Open Source
-Contributions to others' projects. Use normal card with title link.
-- Agentflow → GitHub repo link, PR pills for each merged PR
+Canonical email: **suchithkoduru@gmail.com**
 
 ---
 
-## Homepage (index.html)
+## Content rules
 
-Shows 3 featured project cards in `projects-grid--three`: Deep Research Agent, Agentflow, Customer Churn Prediction.
-"View all projects →" CTA links to `projects.html`.
+- Do **not** fabricate metrics, companies, projects, or users
+- Prefer resume-backed claims only (latency numbers, language counts, merged PRs)
+- AgentFlow: cite merged PRs **#17** and **#19** (do not invent #18 on the site)
+- Status: 10xScale engagement completed; open to software / AI roles unless content is updated again
 
 ---
 
-## How to add a new project
+## Projects page model
 
-1. Decide which category it belongs to (Personal / At 10xscale.ai / Open Source)
-2. Add the card HTML to `projects.html` in the right section
-3. If it's a personal project, also add it to `index.html` (replacing the oldest if already 3 shown)
-4. Generate a thumbnail using the style guide in `assets/images/IMAGE_PROMPTS.md` — save as `assets/images/<name>.png` at 1200×720 px
-5. Reference it in the card's `<img src="assets/images/<name>.png">`
+Use `.case-study` rows, not only identical cards:
 
-### Card HTML template (personal / open source)
+1. **At 10xScale.ai** (Private badge) — medical agent, voice kiosk, interview platform, MCP/database agent
+2. **Open source** — AgentFlow
+3. **Personal & coursework** — Deep Research, churn, CIFAR-100
 
-The whole card is clickable (JS in `script.js` reads `.project-title-link` and opens it).
-Inner `<a>` tags (PR pills etc.) work independently — they intercept their own clicks before the card handler fires.
-Private cards use `project-card--private` instead of `--hover` and have no title link.
+Each case should expose where possible: problem · what I built · architecture/decision · impact · technologies.
+
+Thumbnails: prefer optimized JPEG under ~100KB. Inline SVG diagrams are fine when they explain architecture better than art.
+
+---
+
+## Writing route
+
+`writing.html` is ready for the interactive technical article:
+
+- Index list with draft card
+- `.article-shell` / `.article-title` / `.article-lede` / `.article-body` / `.article-placeholder`
+- Reserved hook class: `.article-interactive`
+
+---
+
+## How to add a featured homepage card
 
 ```html
 <div class="project-card project-card--hover">
   <div class="project-thumb">
-    <img src="assets/images/FILENAME.png" alt="PROJECT NAME" loading="lazy" onerror="this.style.display='none'">
+    <img src="assets/images/FILENAME.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
     <span class="project-thumb-fallback" aria-hidden="true">X</span>
   </div>
   <div class="project-body">
     <h3 class="project-title">
       <a href="LINK" target="_blank" rel="noopener" class="project-title-link">
         PROJECT NAME
-        <svg class="project-title-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        <svg class="project-title-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
       </a>
     </h3>
-    <p class="project-desc">One or two sentences describing what it does.</p>
-    <ul class="project-tech" role="list">
-      <li>Tech 1</li>
-      <li>Tech 2</li>
-    </ul>
-  </div>
-</div>
-```
-
-### Card template (private / no link)
-
-```html
-<div class="project-card project-card--hover project-card--private">
-  <div class="project-thumb">
-    <img src="assets/images/FILENAME.png" alt="PROJECT NAME" loading="lazy" onerror="this.style.display='none'">
-    <span class="project-thumb-fallback" aria-hidden="true">X</span>
-  </div>
-  <div class="project-body">
-    <div class="project-title-row">
-      <h3 class="project-title">PROJECT NAME</h3>
-      <span class="project-badge">Private</span>
-    </div>
     <p class="project-desc">One or two sentences.</p>
     <ul class="project-tech" role="list">
       <li>Tech 1</li>
@@ -116,60 +99,22 @@ Private cards use `project-card--private` instead of `--hover` and have no title
 </div>
 ```
 
-### Card template (open source contribution with PR pills)
-
-```html
-<div class="project-card project-card--hover">
-  <div class="project-thumb">
-    <img src="assets/images/FILENAME.png" alt="REPO NAME" loading="lazy" onerror="this.style.display='none'">
-    <span class="project-thumb-fallback" aria-hidden="true">X</span>
-  </div>
-  <div class="project-body">
-    <h3 class="project-title">
-      <a href="REPO_URL" target="_blank" rel="noopener" class="project-title-link">
-        REPO NAME
-        <svg class="project-title-arrow" .../>
-      </a>
-    </h3>
-    <p class="project-desc">What you contributed and why.</p>
-    <div class="pr-pills">
-      <a href="PR_URL" target="_blank" rel="noopener" class="pr-pill">↗ PR #N</a>
-    </div>
-    <ul class="project-tech" role="list">
-      <li>Tech 1</li>
-    </ul>
-  </div>
-</div>
-```
+Private cards: add `project-card--private`, no title link, use `.project-badge`.
 
 ---
 
-## How to update content
+## Thumbnail style guide
 
-**Hero text** — edit `index.html` lines with `.hero-subtitle` and `.hero-description`
-
-**About prose** — edit the `<div class="prose">` block in the `#story` section of `index.html`
-
-**Now block** — edit the `<ul class="now-list">` in `index.html` — keep to 3 bullets max
-
-**Background / skills** — edit `.colophon` in `index.html`
-
-**Resume** — replace `resume.pdf` (same filename)
-
----
-
-## Thumbnail style guide (quick reference)
-
-- Size: 1200×720 px (5:3 ratio)
-- Background: white `#ffffff` or very light gray `#f6f6f6`
-- Accent: terracotta `#B5483A` on one focal element only
-- Style: flat editorial illustration — no gradients, no glow, no faces, no 3D
-- Full prompts with per-project details: `assets/images/IMAGE_PROMPTS.md`
+- Size: ~1200×720 (CSS cards use 16:9)
+- Background: off-white / warm paper
+- Accent: terracotta on one focal element
+- Flat editorial illustration — no gradients, glow, faces, or 3D
+- Prefer JPEG after export for weight; keep under ~100KB when possible
 
 ---
 
 ## Deployment
 
-- GitHub Pages with custom domain `suchith.space` (via `CNAME`)
-- No build step — plain HTML/CSS/JS, push to `main` to deploy
-- Analytics: Google Analytics `G-BFC42ZF5NR` already wired in `<head>`
+- GitHub Pages + custom domain `suchith.space` (`CNAME`)
+- No build step — plain HTML/CSS/JS
+- Analytics: Google Analytics `G-BFC42ZF5NR`
